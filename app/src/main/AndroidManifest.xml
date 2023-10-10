@@ -13,6 +13,7 @@
         android:theme="@style/Theme.ConvertEase"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".Text"
             android:exported="false" />
         <activity
@@ -20,6 +21,9 @@
             android:exported="false" />
         <activity
             android:name=".Image"
+=======
+            android:name=".Splashscreen"
+>>>>>>> 6fade341365a3de0b48d2b3c474cf6b7ede6f5a0
             android:exported="false" />
         <activity
             android:name=".MainActivity"
