@@ -4,5 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="pink">#FFB6C1</color>
     <color name="dark_blue">#001524</color>
-
+    <color name="transparent">#00000000</color>
 </resources>
