@@ -5,4 +5,11 @@
     <color name="pink">#FFB6C1</color>
     <color name="dark_blue">#001524</color>
     <color name="transparent">#00000000</color>
+    <color name="image_bg">#D7FCCB</color>
+    <color name="video_bg">#C6D2F8</color>
+    <color name="music_bg">#DFE1F1</color>
+    <color name="pdf_bg">#FEFBD0</color>
+    <color name="folder_bg">#CAFCFF</color>
+    <color name="text_bg">#DFCFDF</color>
+    <color name="grey">#272829</color>
 </resources>
