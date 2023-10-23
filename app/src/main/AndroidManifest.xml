@@ -15,8 +15,12 @@
         <activity
             android:name=".Text"
             android:exported="false" />
+
         <activity
             android:name=".HistoryFragment"
+            android:exported="false" />
+        <activity
+            android:name=".SettingFragment"
             android:exported="false" />
         <activity
             android:name=".HomeFragment"

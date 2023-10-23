@@ -1,6 +1,9 @@
 package com.example.convertease;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.convertease.databinding.ActivityMainBinding;
 
@@ -28,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-
         // Replace this with the appropriate initial fragment setup
         replaceFragment(new HomeFragment());
     }
@@ -39,4 +41,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
+
 }
