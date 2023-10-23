@@ -59,7 +59,7 @@ public class MusicOptionsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_folder_options, container, false);
+        View view =  inflater.inflate(R.layout.fragment_music_options, container, false);
 
         ImageButton backButton = view.findViewById(R.id.backBtn);
 

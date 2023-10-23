@@ -5,56 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:theme="@style/MyTheme.MainScreen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context=".MainActivity">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/gradient_bg"
-                tools:ignore="MissingConstraints">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/tiltneon"
-                        android:text="ConvertEase"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="35sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.AppBarLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/include3"
+        layout="@layout/top_nav_without_setting" />
 
     <ImageButton
         android:id="@+id/backBtn"
@@ -67,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/include3"
         app:layout_constraintVertical_bias="0.044"
         app:srcCompat="@drawable/baseline_arrow_back_ios_new_24" />
 
@@ -82,8 +35,84 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toEndOf="@+id/backBtn"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/include3"
         app:layout_constraintVertical_bias="0.039" />
 
 
+    <ImageButton
+        android:id="@+id/compressVideoBtn"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/custom_button"
+        android:src="@drawable/custom_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Compress Video"
+        android:textColor="@color/dark_blue"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/compressVideoBtn"
+        app:layout_constraintEnd_toEndOf="@+id/compressVideoBtn"
+        app:layout_constraintStart_toStartOf="@+id/compressVideoBtn"
+        app:layout_constraintTop_toTopOf="@+id/compressVideoBtn" />
+
+
+    <ImageButton
+        android:id="@+id/convertToMp3Btn"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:background="@drawable/custom_button"
+        android:src="@drawable/custom_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/compressVideoBtn"
+        app:layout_constraintVertical_bias="0.123" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Convert To MP3"
+        android:textColor="@color/dark_blue"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/convertToMp3Btn"
+        app:layout_constraintEnd_toEndOf="@+id/convertToMp3Btn"
+        app:layout_constraintStart_toStartOf="@+id/convertToMp3Btn"
+        app:layout_constraintTop_toTopOf="@+id/convertToMp3Btn" />
+
+
+    <ImageButton
+        android:id="@+id/trimVideoBtn"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:background="@drawable/custom_button"
+        android:src="@drawable/custom_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/convertToMp3Btn"
+        app:layout_constraintVertical_bias="0.192" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trim Video"
+        android:textColor="@color/dark_blue"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/trimVideoBtn"
+        app:layout_constraintEnd_toEndOf="@+id/trimVideoBtn"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="@+id/trimVideoBtn"
+        app:layout_constraintTop_toTopOf="@+id/trimVideoBtn"
+        app:layout_constraintVertical_bias="0.478" />
 </androidx.constraintlayout.widget.ConstraintLayout>

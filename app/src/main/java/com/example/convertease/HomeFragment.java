@@ -74,16 +74,8 @@ public class HomeFragment extends Fragment {
         Button textBtn = view.findViewById(R.id.text_btn);
         Button folderBtn = view.findViewById(R.id.folder_btn);
 
+
         imgBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Switch to the ImageOptionsFragment
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, new ImageOptionsFragment());
-                transaction.addToBackStack(null); // Optionally, add to the back stack
-                transaction.commit();
-            }
-        });imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Switch to the ImageOptionsFragment
