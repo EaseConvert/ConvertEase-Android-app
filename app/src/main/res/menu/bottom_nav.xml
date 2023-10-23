@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/baseline_home_24"
+        android:iconTint="@color/white"
+        />
+    <item
+        android:id="@+id/history"
+        android:title="History"
+        android:icon="@drawable/history_icon_foreground"
+        />
+
+</menu>

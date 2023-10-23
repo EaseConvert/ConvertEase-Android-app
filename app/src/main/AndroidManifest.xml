@@ -16,6 +16,12 @@
             android:name=".Text"
             android:exported="false" />
         <activity
+            android:name=".HistoryFragment"
+            android:exported="false" />
+        <activity
+            android:name=".HomeFragment"
+            android:exported="false" />
+        <activity
             android:name=".video"
             android:exported="false" />
         <activity
