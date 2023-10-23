@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="360dp"
+    android:theme="@style/AppTheme.Light"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout

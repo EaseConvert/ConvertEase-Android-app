@@ -5,71 +5,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:theme="@style/MyTheme.MainScreen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context=".MainActivity">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/gradient_bg"
-                tools:ignore="MissingConstraints">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/tiltneon"
-                        android:text="ConvertEase"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="35sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.AppBarLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageButton
-        android:id="@+id/backBtn"
+    <TextView
+        android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:background="@color/transparent"
-        android:padding="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-        app:layout_constraintVertical_bias="0.044"
-        app:srcCompat="@drawable/baseline_arrow_back_ios_new_24" />
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/cropBtn"
+        app:layout_constraintEnd_toEndOf="@+id/cropBtn"
+        app:layout_constraintStart_toStartOf="@+id/cropBtn"
+        app:layout_constraintTop_toTopOf="@+id/cropBtn" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/top_nav_without_setting" />
+
 
     <TextView
         android:id="@+id/textView15"
@@ -80,10 +29,123 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toEndOf="@+id/backBtn"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/include"
         app:layout_constraintVertical_bias="0.039" />
 
 
+    <ImageButton
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:background="@color/transparent"
+        android:padding="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.036"
+        app:srcCompat="@drawable/baseline_arrow_back_ios_new_24"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/imageToPdfBtn"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:background="@drawable/custom_button"
+        android:src="@drawable/custom_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintVertical_bias="0.080" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Image To PDF"
+        android:textColor="@color/dark_blue"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageToPdfBtn"
+        app:layout_constraintEnd_toEndOf="@+id/imageToPdfBtn"
+        app:layout_constraintStart_toStartOf="@+id/imageToPdfBtn"
+        app:layout_constraintTop_toTopOf="@+id/imageToPdfBtn" />
+
+    <ImageButton
+        android:id="@+id/cropBtn"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:background="@drawable/custom_button"
+        android:src="@drawable/custom_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageToPdfBtn"
+        app:layout_constraintVertical_bias="0.116" />
+
+    <ImageButton
+        android:id="@+id/bgRemoveBtn"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:background="@drawable/custom_button"
+        android:src="@drawable/custom_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cropBtn"
+        app:layout_constraintVertical_bias="0.200" />
+
+    <ImageButton
+        android:id="@+id/compressBtn"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:background="@drawable/custom_button"
+        android:src="@drawable/custom_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bgRemoveBtn"
+        app:layout_constraintVertical_bias="0.310" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crop"
+        android:textColor="@color/dark_blue"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/cropBtn"
+        app:layout_constraintEnd_toEndOf="@+id/cropBtn"
+        app:layout_constraintStart_toStartOf="@+id/cropBtn"
+        app:layout_constraintTop_toTopOf="@+id/cropBtn" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove Background"
+        android:textColor="@color/dark_blue"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bgRemoveBtn"
+        app:layout_constraintEnd_toEndOf="@+id/bgRemoveBtn"
+        app:layout_constraintStart_toStartOf="@+id/bgRemoveBtn"
+        app:layout_constraintTop_toTopOf="@+id/bgRemoveBtn" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Compress"
+        android:textColor="@color/dark_blue"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/compressBtn"
+        app:layout_constraintEnd_toEndOf="@+id/compressBtn"
+        app:layout_constraintStart_toStartOf="@+id/compressBtn"
+        app:layout_constraintTop_toTopOf="@+id/compressBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

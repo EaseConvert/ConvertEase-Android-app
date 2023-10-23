@@ -16,6 +16,24 @@
         <activity
             android:name=".Text"
             android:exported="false" />
+        <activity
+            android:name=".FolderOptionsFragment"
+            android:exported="false" />
+        <activity
+            android:name=".VideoOptionsFragment"
+            android:exported="false" />
+        <activity
+            android:name=".MusicOptionsFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ImageOptionsFragment"
+            android:exported="false" />
+        <activity
+            android:name=".TextOptionsFragment"
+            android:exported="false" />
+        <activity
+            android:name=".PdfOptionsFragment"
+            android:exported="false" />
 
         <activity
             android:name=".HistoryFragment"

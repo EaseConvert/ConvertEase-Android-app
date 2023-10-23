@@ -60,7 +60,7 @@ public class ImageOptionsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_folder_options, container, false);
+        View view =  inflater.inflate(R.layout.fragment_image_options, container, false);
 
         ImageButton backButton = view.findViewById(R.id.backBtn);
 

@@ -66,16 +66,16 @@ public class SettingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
         Switch themeSwitch = view.findViewById(R.id.theme_toggle_switch);
-        themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    setAppTheme(R.style.AppTheme_Dark);
-                } else {
-                    setAppTheme(R.style.AppTheme_Light);
-                }
-            }
-        });
+//        themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    setAppTheme(R.style.AppTheme_Dark);
+//                } else {
+//                    setAppTheme(R.style.AppTheme_Light);
+//                }
+//            }
+//        });
         return view;
     }
     private void setAppTheme(int themeId) {
