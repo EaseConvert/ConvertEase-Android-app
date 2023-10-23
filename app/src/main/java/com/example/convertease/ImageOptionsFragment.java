@@ -1,6 +1,5 @@
 package com.example.convertease;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,15 +7,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
-import android.widget.Switch;
+import android.widget.ImageButton;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SettingFragment#newInstance} factory method to
+ * Use the {@link ImageOptionsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SettingFragment extends Fragment {
+public class ImageOptionsFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +25,7 @@ public class SettingFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SettingFragment() {
+    public ImageOptionsFragment() {
         // Required empty public constructor
     }
 
@@ -37,11 +35,11 @@ public class SettingFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SettingFragment.
+     * @return A new instance of fragment ImageOptionsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SettingFragment newInstance(String param1, String param2) {
-        SettingFragment fragment = new SettingFragment();
+    public static ImageOptionsFragment newInstance(String param1, String param2) {
+        ImageOptionsFragment fragment = new ImageOptionsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,28 +56,21 @@ public class SettingFragment extends Fragment {
         }
     }
 
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_setting, container, false);
+        View view =  inflater.inflate(R.layout.fragment_folder_options, container, false);
 
-        Switch themeSwitch = view.findViewById(R.id.theme_toggle_switch);
-        themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        ImageButton backButton = view.findViewById(R.id.backBtn);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    setAppTheme(R.style.AppTheme_Dark);
-                } else {
-                    setAppTheme(R.style.AppTheme_Light);
-                }
+            public void onClick(View v) {
+                // Navigate back to the previous fragment
+                getParentFragmentManager().popBackStack();
             }
         });
         return view;
-    }
-    private void setAppTheme(int themeId) {
-        requireActivity().setTheme(themeId);
-        requireActivity().recreate(); // Recreate the activity to apply the new theme
     }
 }

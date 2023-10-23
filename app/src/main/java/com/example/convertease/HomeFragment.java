@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 /**
@@ -63,12 +64,85 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-
         ImageButton settingButton = view.findViewById(R.id.settingBtn);
-
         settingButton.setOnClickListener(v -> openSettingPage());
 
+        Button imgBtn = view.findViewById(R.id.img_btn);
+        Button pdfBtn = view.findViewById(R.id.pdf_btn);
+        Button videoBtn = view.findViewById(R.id.video_btn);
+        Button musicBtn = view.findViewById(R.id.music_btn);
+        Button textBtn = view.findViewById(R.id.text_btn);
+        Button folderBtn = view.findViewById(R.id.folder_btn);
+
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Switch to the ImageOptionsFragment
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new ImageOptionsFragment());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Switch to the ImageOptionsFragment
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new ImageOptionsFragment());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });
+        pdfBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Switch to the ImageOptionsFragment
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new PdfOptionsFragment());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });
+        musicBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Switch to the ImageOptionsFragment
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new MusicOptionsFragment());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });
+        videoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Switch to the ImageOptionsFragment
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new VideoOptionsFragment());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });
+        folderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Switch to the ImageOptionsFragment
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new FolderOptionsFragment());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });
+        textBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Switch to the ImageOptionsFragment
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new TextOptionsFragment());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });
 
         return view;
     }

@@ -34,7 +34,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="3dp">
+                    android:padding="6dp">
 
                     <TextView
                         android:id="@+id/textView10"
@@ -81,7 +81,7 @@
             app:layout_constraintHorizontal_bias="0.823"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pdf_btn"
-            app:layout_constraintVertical_bias="0.058" />
+            app:layout_constraintVertical_bias="0.035" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -250,7 +250,7 @@
             app:layout_constraintHorizontal_bias="0.698"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.081" />
+            app:layout_constraintVertical_bias="0.087" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -296,7 +296,7 @@
         <android.widget.Button
             android:id="@+id/text_btn"
             android:layout_width="151dp"
-            android:layout_height="203dp"
+            android:layout_height="200dp"
             android:background="@drawable/home_page_text_btn"
             android:elevation="0dp"
             android:padding="20dp"
@@ -306,12 +306,12 @@
             app:layout_constraintHorizontal_bias="0.169"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/video_btn"
-            app:layout_constraintVertical_bias="0.212" />
+            app:layout_constraintVertical_bias="0.277" />
 
         <android.widget.Button
             android:id="@+id/folder_btn"
             android:layout_width="151dp"
-            android:layout_height="203dp"
+            android:layout_height="200dp"
             android:background="@drawable/home_page_folder_btn"
             android:elevation="0dp"
             android:padding="20dp"
@@ -321,7 +321,7 @@
             app:layout_constraintHorizontal_bias="0.823"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/video_btn"
-            app:layout_constraintVertical_bias="0.212" />
+            app:layout_constraintVertical_bias="0.277" />
 
         <ImageView
 
