@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-//import com..Data.myDBHandler;
-//import com.multimediaconvertor.model.History;
-//import com.multimediaconvertor.MyAdapter;
+import com.example.convertease.Data.myDBHandler;
+import com.example.convertease.model.History;
+import com.example.convertease.RecyclerHistoryAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,8 +78,8 @@ public class HistoryFragment extends Fragment {
 
 
 
-//        RecyclerHistoryAdapter recyclerHistoryAdapter;
-//        ArrayList<History> historyArrayList;
+        RecyclerHistoryAdapter recyclerHistoryAdapter;
+        ArrayList<History> historyArrayList;
 
 
         ArrayAdapter<String> arrayAdapter;
@@ -93,25 +93,25 @@ public class HistoryFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-//
-//
-//        // Db handle
-//        myDBHandler db = new myDBHandler(thiscontext);
-//        List<History> allHistory = db.getHistory();
-//
-//        //array list for history
-//        historyArrayList = new ArrayList<>();
-//
-//
-//
-//        for(History history : allHistory){
-//            historyArrayList.add(history);
-//            Log.d("dbHistoryData","data = " + allHistory);
-//        }
-//
-//        // recycler view adapter work
-//        recyclerHistoryAdapter = new RecyclerHistoryAdapter(thiscontext,historyArrayList);
-//        recyclerView.setAdapter(recyclerHistoryAdapter);
+
+
+        // Db handle
+        myDBHandler db = new myDBHandler(thiscontext);
+        List<History> allHistory = db.getHistory();
+
+        //array list for history
+        historyArrayList = new ArrayList<>();
+
+
+
+        for(History history : allHistory){
+            historyArrayList.add(history);
+            Log.d("dbHistoryData","data = " + allHistory);
+        }
+
+        // recycler view adapter work
+        recyclerHistoryAdapter = new RecyclerHistoryAdapter(thiscontext,historyArrayList);
+        recyclerView.setAdapter(recyclerHistoryAdapter);
         return view;
     }
 }
