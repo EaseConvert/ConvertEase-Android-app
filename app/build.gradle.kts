@@ -44,5 +44,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("androidx.core:core-splashscreen:1.1.0-alpha02")
     implementation ("androidx.fragment:fragment:1.6.1")
+    implementation("io.github.tutorialsandroid:filepicker:9.2.5")
 
 }
