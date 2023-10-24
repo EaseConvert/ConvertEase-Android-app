@@ -80,7 +80,7 @@ public class ImageOptionsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, new SelectImageFragment());
+                transaction.replace(R.id.frame_layout, new ImgToPdfFragment());
                 transaction.addToBackStack(null); // Optionally, add to the back stack
                 transaction.commit();
             }

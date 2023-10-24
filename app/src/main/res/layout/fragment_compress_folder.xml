@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectImageFragment">
+    tools:context=".ImgToPdfFragment">
 
     <include
         android:id="@+id/include4"
@@ -15,7 +15,7 @@
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Images"
+        android:text="Select Folder"
         android:textColor="@color/dark_blue"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,7 +41,7 @@
         tools:ignore="ContentDescription" />
 
     <ImageButton
-        android:id="@+id/selectImgBtn"
+        android:id="@+id/selectFileBtn"
         android:layout_width="340dp"
         android:layout_height="80dp"
         android:background="@drawable/custom_button"
@@ -53,17 +53,42 @@
         app:layout_constraintTop_toBottomOf="@+id/textView15"
         app:layout_constraintVertical_bias="0.080" />
 
+    <ImageButton
+        android:id="@+id/CompressToZipBtn"
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:background="@drawable/custom_button"
+        android:src="@drawable/custom_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectFileBtn"
+        app:layout_constraintVertical_bias="0.249" />
+
     <TextView
         android:id="@+id/textView31"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Image"
+        android:text="Select Folder"
         android:textColor="@color/dark_blue"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/selectImgBtn"
-        app:layout_constraintEnd_toEndOf="@+id/selectImgBtn"
-        app:layout_constraintStart_toStartOf="@+id/selectImgBtn"
-        app:layout_constraintTop_toTopOf="@+id/selectImgBtn" />
+        app:layout_constraintBottom_toBottomOf="@+id/selectFileBtn"
+        app:layout_constraintEnd_toEndOf="@+id/selectFileBtn"
+        app:layout_constraintStart_toStartOf="@+id/selectFileBtn"
+        app:layout_constraintTop_toTopOf="@+id/selectFileBtn" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Compress To ZIP"
+        android:textColor="@color/dark_blue"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/CompressToZipBtn"
+        app:layout_constraintEnd_toEndOf="@+id/CompressToZipBtn"
+        app:layout_constraintStart_toStartOf="@+id/CompressToZipBtn"
+        app:layout_constraintTop_toTopOf="@+id/CompressToZipBtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.convertease"
-        minSdk = 26
+        minSdk = 29
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -45,5 +45,7 @@ dependencies {
     implementation ("androidx.core:core-splashscreen:1.1.0-alpha02")
     implementation ("androidx.fragment:fragment:1.6.1")
     implementation("io.github.tutorialsandroid:filepicker:9.2.5")
+    implementation ("androidx.activity:activity:1.8.0")
+    implementation ("androidx.fragment:fragment:1.6.1")
 
 }
