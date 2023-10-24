@@ -5,16 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/cropBtn"
-        app:layout_constraintEnd_toEndOf="@+id/cropBtn"
-        app:layout_constraintStart_toStartOf="@+id/cropBtn"
-        app:layout_constraintTop_toTopOf="@+id/cropBtn" />
-
     <include
         android:id="@+id/include"
         layout="@layout/top_nav_without_setting" />
@@ -75,19 +65,6 @@
         app:layout_constraintTop_toTopOf="@+id/imageToPdfBtn" />
 
     <ImageButton
-        android:id="@+id/cropBtn"
-        android:layout_width="340dp"
-        android:layout_height="80dp"
-        android:background="@drawable/custom_button"
-        android:src="@drawable/custom_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageToPdfBtn"
-        app:layout_constraintVertical_bias="0.116" />
-
-    <ImageButton
         android:id="@+id/bgRemoveBtn"
         android:layout_width="340dp"
         android:layout_height="80dp"
@@ -97,8 +74,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cropBtn"
-        app:layout_constraintVertical_bias="0.200" />
+        app:layout_constraintTop_toBottomOf="@+id/imageToPdfBtn"
+        app:layout_constraintVertical_bias="0.133" />
 
     <ImageButton
         android:id="@+id/compressBtn"
@@ -111,19 +88,7 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bgRemoveBtn"
-        app:layout_constraintVertical_bias="0.310" />
-
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Crop"
-        android:textColor="@color/dark_blue"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/cropBtn"
-        app:layout_constraintEnd_toEndOf="@+id/cropBtn"
-        app:layout_constraintStart_toStartOf="@+id/cropBtn"
-        app:layout_constraintTop_toTopOf="@+id/cropBtn" />
+        app:layout_constraintVertical_bias="0.251" />
 
     <TextView
         android:id="@+id/textView24"

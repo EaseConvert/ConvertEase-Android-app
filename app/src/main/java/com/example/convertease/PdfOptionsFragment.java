@@ -3,6 +3,7 @@ package com.example.convertease;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,12 +63,41 @@ public class PdfOptionsFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_pdf_options, container, false);
 
         ImageButton backButton = view.findViewById(R.id.backBtn);
-
+        ImageButton convertToDocBtn = view.findViewById(R.id.convertToDocxBtn);
+        ImageButton splitPdfBtn = view.findViewById(R.id.splitPdfBtn);
+        ImageButton mergePdfBtn = view.findViewById(R.id.mergePdfbtn);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate back to the previous fragment
                 getParentFragmentManager().popBackStack();
+            }
+        });
+        convertToDocBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new ConvertToDOCX());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });
+        splitPdfBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new SplitPDF());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });
+        mergePdfBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new MergePDF());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
             }
         });
         return view;

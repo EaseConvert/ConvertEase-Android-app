@@ -66,7 +66,7 @@ public class ImageOptionsFragment extends Fragment {
         ImageButton backButton = view.findViewById(R.id.backBtn);
 
         ImageButton imgToPdf = view.findViewById(R.id.imageToPdfBtn);
-        ImageButton cropBtn = view.findViewById(R.id.cropBtn);
+
         ImageButton removeBgBtn = view.findViewById(R.id.bgRemoveBtn);
         ImageButton compressBtn = view.findViewById(R.id.compressBtn);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +83,32 @@ public class ImageOptionsFragment extends Fragment {
                 transaction.replace(R.id.frame_layout, new ImgToPdfFragment());
                 transaction.addToBackStack(null); // Optionally, add to the back stack
                 transaction.commit();
+            }
+        });
+
+        removeBgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new BgRemove());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });
+        compressBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new CompressImage());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate back to the previous fragment
+                getParentFragmentManager().popBackStack();
             }
         });
         return view;

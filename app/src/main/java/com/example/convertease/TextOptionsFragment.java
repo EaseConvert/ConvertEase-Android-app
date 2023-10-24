@@ -3,6 +3,7 @@ package com.example.convertease;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,13 +62,34 @@ public class TextOptionsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_text_options, container, false);
 
-        ImageButton backButton = view.findViewById(R.id.backBtn);
 
+        ImageButton convertTextToUpper = view.findViewById(R.id.convertToUpperBtn);
+        ImageButton convertTextToLower = view.findViewById(R.id.convertToLowerBtn);
+        ImageButton backButton = view.findViewById(R.id.backBtn);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate back to the previous fragment
                 getParentFragmentManager().popBackStack();
+            }
+        });
+
+        convertTextToUpper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new ConvertTextToUppercase());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });
+        convertTextToLower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new ConvertTextToLowercase());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
             }
         });
         return view;

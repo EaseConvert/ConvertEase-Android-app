@@ -79,10 +79,10 @@
             android:textColor="@color/dark_blue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.823"
+            app:layout_constraintHorizontal_bias="0.825"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pdf_btn"
-            app:layout_constraintVertical_bias="0.035" />
+            app:layout_constraintVertical_bias="0.150" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -136,10 +136,10 @@
             android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.823"
+            app:layout_constraintHorizontal_bias="0.825"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
-            app:layout_constraintVertical_bias="0.043" />
+            app:layout_constraintVertical_bias="0.050" />
 
         <ImageView
             android:elevation="10dp"
@@ -191,10 +191,10 @@
             android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/pdf_btn"
-            app:layout_constraintHorizontal_bias="0.692"
+            app:layout_constraintHorizontal_bias="0.700"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
-            app:layout_constraintVertical_bias="0.043" />
+            app:layout_constraintVertical_bias="0.050" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -248,10 +248,10 @@
             android:textColor="@color/dark_blue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/music_btn"
-            app:layout_constraintHorizontal_bias="0.698"
+            app:layout_constraintHorizontal_bias="0.700"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.087" />
+            app:layout_constraintTop_toBottomOf="@+id/img_btn"
+            app:layout_constraintVertical_bias="0.150" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -295,6 +295,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <android.widget.Button
+            android:layout_marginTop="25dp"
             android:id="@+id/text_btn"
             android:layout_width="151dp"
             android:layout_height="200dp"
@@ -303,13 +304,14 @@
             android:padding="20dp"
             android:textColor="@color/dark_blue"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.169"
+            app:layout_constraintEnd_toStartOf="@+id/folder_btn"
+            app:layout_constraintHorizontal_bias="0.700"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/video_btn"
-            app:layout_constraintVertical_bias="0.277" />
+            app:layout_constraintVertical_bias="0.400" />
 
         <android.widget.Button
+            android:layout_marginTop="25dp"
             android:id="@+id/folder_btn"
             android:layout_width="151dp"
             android:layout_height="200dp"
@@ -319,10 +321,10 @@
             android:textColor="@color/dark_blue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.823"
+            app:layout_constraintHorizontal_bias="0.825"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/video_btn"
-            app:layout_constraintVertical_bias="0.277" />
+            app:layout_constraintTop_toBottomOf="@+id/music_btn"
+            app:layout_constraintVertical_bias="0.400" />
 
         <ImageView
 

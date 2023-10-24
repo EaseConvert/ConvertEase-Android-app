@@ -75,7 +75,16 @@ public class ImgToPdfFragment extends Fragment {
                     }
                 });
 
+        ImageButton backButton = view.findViewById(R.id.backBtn);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate back to the previous fragment
+                getParentFragmentManager().popBackStack();
+            }
+        });
         return view;
+
     }
 
     private void pickImages() {

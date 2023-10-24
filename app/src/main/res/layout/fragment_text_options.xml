@@ -65,19 +65,6 @@
         app:layout_constraintTop_toBottomOf="@+id/convertToUpperBtn"
         app:layout_constraintVertical_bias="0.156" />
 
-    <ImageButton
-        android:id="@+id/changeStylingBtn"
-        android:layout_width="340dp"
-        android:layout_height="80dp"
-        android:background="@drawable/custom_button"
-        android:src="@drawable/custom_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/convertToLowerBtn"
-        app:layout_constraintVertical_bias="0.244" />
-
     <TextView
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
@@ -101,18 +88,6 @@
         app:layout_constraintEnd_toEndOf="@+id/convertToLowerBtn"
         app:layout_constraintStart_toStartOf="@+id/convertToLowerBtn"
         app:layout_constraintTop_toTopOf="@+id/convertToLowerBtn" />
-
-    <TextView
-        android:id="@+id/textView28"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change Styling"
-        android:textColor="@color/dark_blue"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/changeStylingBtn"
-        app:layout_constraintEnd_toEndOf="@+id/changeStylingBtn"
-        app:layout_constraintStart_toStartOf="@+id/changeStylingBtn"
-        app:layout_constraintTop_toTopOf="@+id/changeStylingBtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.convertease;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,12 +63,22 @@ public class MusicOptionsFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_music_options, container, false);
 
         ImageButton backButton = view.findViewById(R.id.backBtn);
-
+        ImageButton convertToWav = view.findViewById(R.id.convertToWavBtn);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate back to the previous fragment
                 getParentFragmentManager().popBackStack();
+            }
+        });
+
+        convertToWav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new ConvertToWAV());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
             }
         });
         return view;
