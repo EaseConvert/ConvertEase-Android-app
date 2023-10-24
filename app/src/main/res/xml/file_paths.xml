@@ -1,0 +1,6 @@
+<paths>
+    <!-- Define a path to your app's external files directory -->
+    <external-path
+        name="external_files"
+        path="." />
+</paths>

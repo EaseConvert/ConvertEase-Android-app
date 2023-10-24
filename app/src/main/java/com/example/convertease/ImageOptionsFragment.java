@@ -64,10 +64,7 @@ public class ImageOptionsFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_image_options, container, false);
 
         ImageButton backButton = view.findViewById(R.id.backBtn);
-
         ImageButton imgToPdf = view.findViewById(R.id.imageToPdfBtn);
-
-        ImageButton removeBgBtn = view.findViewById(R.id.bgRemoveBtn);
         ImageButton compressBtn = view.findViewById(R.id.compressBtn);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,15 +83,6 @@ public class ImageOptionsFragment extends Fragment {
             }
         });
 
-        removeBgBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, new BgRemove());
-                transaction.addToBackStack(null); // Optionally, add to the back stack
-                transaction.commit();
-            }
-        });
         compressBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

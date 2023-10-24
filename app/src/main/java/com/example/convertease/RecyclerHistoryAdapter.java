@@ -1,6 +1,10 @@
 package com.example.convertease;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.ActivityNotFoundException;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -73,24 +77,41 @@ public class RecyclerHistoryAdapter extends RecyclerView.Adapter<RecyclerHistory
     }
 
     private void openPath(String path) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
         File file = new File(path);
+        Log.d("Divesh", "File path: " + path);
+        if (context != null && file.exists()) {
+            Uri uri = FileProvider.getUriForFile(context, context.getPackageName() + ".provider", file);
+            String mimeType = getMimeType(uri);
 
-        if (file.exists()) {
-            Uri contentUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", file);
-
-            Intent intent = new Intent(Intent.ACTION_VIEW);
+            // Set the MIME type to open files of various types
+            intent.setDataAndType(uri, mimeType);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            intent.setDataAndType(contentUri, "application/*"); // Adjust the MIME type as needed
 
             try {
-                context.startActivity(intent);
+                Log.d("openFile", "error got " + uri);
+                startActivity(context, intent, null);
             } catch (ActivityNotFoundException e) {
-                // Handle the case where there is no app to open the folder
-                Toast.makeText(context, "No app found to open this folder.", Toast.LENGTH_SHORT).show();
+                // Handle the case where no app is available to open the file
+                Toast.makeText(context, "No app can open this file", Toast.LENGTH_SHORT).show();
             }
         } else {
             // Handle the case where the file does not exist
-            Toast.makeText(context, "File does not exist.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "File does not exist", Toast.LENGTH_SHORT).show();
         }
     }
+
+    // Function to get the MIME type based on the file's URI
+    private String getMimeType(Uri uri) {
+        ContentResolver contentResolver = context.getContentResolver();
+        String type = contentResolver.getType(uri);
+
+        // If the type is not null, return it; otherwise, return the default type "*/*"
+        if (type != null) {
+            return type;
+        } else {
+            return "*/*";
+        }
+    }
+
 }

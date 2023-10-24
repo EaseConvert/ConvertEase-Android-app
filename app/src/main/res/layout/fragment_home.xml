@@ -296,6 +296,7 @@
 
         <android.widget.Button
             android:layout_marginTop="25dp"
+            android:layout_marginBottom="30dp"
             android:id="@+id/text_btn"
             android:layout_width="151dp"
             android:layout_height="200dp"
@@ -312,6 +313,8 @@
 
         <android.widget.Button
             android:layout_marginTop="25dp"
+            android:layout_marginBottom="30dp"
+
             android:id="@+id/folder_btn"
             android:layout_width="151dp"
             android:layout_height="200dp"
