@@ -54,13 +54,12 @@ ConvertEase is a powerful multimedia converter Android app that offers a wide ra
 
 ## Bug Reporting
 
-🐞 Found a bug or have feedback? We'd love to hear from you. Please report issues on our [Email](easeconvert@gmail.com) page.
+🐞 Found a bug or have feedback? We'd love to hear from you. Please report issues by sending an email to [ConvertEase](mailto:easeconvert@gmail.com).
 
 ## Contact
 
-📧 For questions, suggestions, or support, feel free to contact us at [Email](easeconvert@gmail.com).
+📧 For questions, suggestions, or support, feel free to contact us at [ConvertEase](mailto:easeconvert@gmail.com).
 
 ---
 
 © 2023 ConvertEase. All rights reserved.
-
