@@ -1,6 +1,12 @@
-<paths>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Define a path to your app's external files directory -->
     <external-path
         name="external_files"
         path="." />
+
+        <external-path
+            name="ConvertEase"
+            path="ConvertEase/Downloads"/>
+
+
 </paths>

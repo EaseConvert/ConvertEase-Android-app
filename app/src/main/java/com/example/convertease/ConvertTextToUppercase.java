@@ -1,13 +1,28 @@
 package com.example.convertease;
 
+import static android.app.Activity.RESULT_OK;
+import static android.content.Intent.ACTION_OPEN_DOCUMENT;
+import static android.content.Intent.ACTION_PICK;
+
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,6 +30,9 @@ import android.widget.ImageButton;
  * create an instance of this fragment.
  */
 public class ConvertTextToUppercase extends Fragment {
+    String textFilePath;
+    Context thiscontext;
+    String fileData;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,6 +80,10 @@ public class ConvertTextToUppercase extends Fragment {
         // Inflate the layout for this fragment
         View   view =inflater.inflate(R.layout.fragment_convert_text_to_uppercase, container, false);
         ImageButton backButton = view.findViewById(R.id.backBtn);
+        ImageButton selectFileBtn , convertToUpperbtn;
+        selectFileBtn = view.findViewById(R.id.selectTxtFileBtn);
+        convertToUpperbtn = view.findViewById(R.id.ConvertCaseBtn);
+        thiscontext = container.getContext();
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +91,64 @@ public class ConvertTextToUppercase extends Fragment {
                 getParentFragmentManager().popBackStack();
             }
         });
+        selectFileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate back to the previous fragment
+                pickTextFile();
+            }
+        });
+        convertToUpperbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate back to the previous fragment
+                readText(textFilePath);
+            }
+        });
+
+
         return view;
+    }
+    private void pickTextFile() {
+        Intent iGallery = new Intent(ACTION_OPEN_DOCUMENT);
+        iGallery.addCategory(Intent.CATEGORY_OPENABLE);
+        iGallery.setType("text/*");
+        iGallery.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(iGallery, "Select Text File"), 42);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 42 && resultCode == RESULT_OK){
+            if(data != null){
+                Uri uri = data.getData();
+                textFilePath = uri.getPath();
+                textFilePath= textFilePath.substring(textFilePath.indexOf((":") + 1));
+                Log.d("textdata","data is " + textFilePath);
+//                Toast.makeText(thiscontext,"Permission Denied !", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void readText(String input){
+
+        File file = new File(input);
+        StringBuilder text = new StringBuilder();
+        Log.d("textdata","this code is running" + text);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine()) != null) {
+                text.append(line);
+                text.append("\n");
+
+            }
+            br.close();
+        }catch(IOException e){
+                e.printStackTrace();
+        }
+        fileData = text.toString();
+        Log.d("textdata","data is " + fileData);
     }
 }

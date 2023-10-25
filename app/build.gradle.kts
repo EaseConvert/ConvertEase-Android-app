@@ -51,6 +51,9 @@ dependencies {
     implementation ("androidx.activity:activity:1.8.0")
     implementation ("androidx.fragment:fragment:1.6.1")
     implementation ("com.iceteck.silicompressorr:silicompressor:2.2.4")
+    implementation ("com.googlecode.mp4parser:isoparser:1.1.22")
+//    implementation("group:artifact:version")
+
 
 }
 

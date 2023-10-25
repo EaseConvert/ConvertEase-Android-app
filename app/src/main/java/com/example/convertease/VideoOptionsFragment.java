@@ -72,15 +72,15 @@ public class VideoOptionsFragment extends Fragment {
                 getParentFragmentManager().popBackStack();
             }
         });
-        compressVideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, new CompressVideo());
-                transaction.addToBackStack(null); // Optionally, add to the back stack
-                transaction.commit();
-            }
-        });
+//        compressVideo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+//                transaction.replace(R.id.frame_layout, new CompressVideo());
+//                transaction.addToBackStack(null); // Optionally, add to the back stack
+//                transaction.commit();
+//            }
+//        });
         convertToMp3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

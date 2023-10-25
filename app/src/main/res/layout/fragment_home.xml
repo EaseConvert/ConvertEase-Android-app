@@ -69,64 +69,6 @@
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <android.widget.Button
-            android:id="@+id/music_btn"
-            android:layout_width="151dp"
-            android:layout_height="203dp"
-            android:background="@drawable/home_page_music_btn"
-            android:elevation="0dp"
-            android:padding="10dp"
-            android:textColor="@color/dark_blue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.825"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pdf_btn"
-            app:layout_constraintVertical_bias="0.150" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/music_btn"
-            app:layout_constraintEnd_toEndOf="@+id/music_btn"
-            app:layout_constraintHorizontal_bias="0.525"
-            app:layout_constraintStart_toStartOf="@+id/music_btn"
-            app:layout_constraintTop_toTopOf="@+id/music_btn"
-            app:layout_constraintVertical_bias="0.1"
-            app:srcCompat="@drawable/music_" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:text="Music"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/music_btn"
-            app:layout_constraintEnd_toEndOf="@+id/music_btn"
-            app:layout_constraintHorizontal_bias="0.506"
-            app:layout_constraintStart_toStartOf="@+id/music_btn"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="127dp"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:text="Convert To WAV \nTrim Audio"
-            android:textAlignment="center"
-            android:textColor="@color/grey"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@+id/music_btn"
-            app:layout_constraintEnd_toEndOf="@+id/music_btn"
-            app:layout_constraintHorizontal_bias="0.521"
-            app:layout_constraintStart_toStartOf="@+id/music_btn"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:layout_constraintVertical_bias="0.38" />
 
         <android.widget.Button
             android:id="@+id/pdf_btn"
@@ -136,10 +78,10 @@
             android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.825"
+            app:layout_constraintHorizontal_bias="0.873"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
-            app:layout_constraintVertical_bias="0.050" />
+            app:layout_constraintVertical_bias="0.05" />
 
         <ImageView
             android:elevation="10dp"
@@ -191,10 +133,10 @@
             android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/pdf_btn"
-            app:layout_constraintHorizontal_bias="0.700"
+            app:layout_constraintHorizontal_bias="0.565"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
-            app:layout_constraintVertical_bias="0.050" />
+            app:layout_constraintVertical_bias="0.05" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -239,95 +181,37 @@
 
 
         <android.widget.Button
-            android:id="@+id/video_btn"
-            android:layout_width="151dp"
-            android:layout_height="203dp"
-            android:background="@drawable/home_page_video_btn"
-            android:elevation="0dp"
-            android:padding="20dp"
-            android:textColor="@color/dark_blue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/music_btn"
-            app:layout_constraintHorizontal_bias="0.700"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_btn"
-            app:layout_constraintVertical_bias="0.150" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/video_btn"
-            app:layout_constraintEnd_toEndOf="@+id/video_btn"
-            app:layout_constraintStart_toStartOf="@+id/video_btn"
-            app:layout_constraintTop_toTopOf="@+id/video_btn"
-            app:layout_constraintVertical_bias="0.109"
-            app:srcCompat="@drawable/video" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:text="Video"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/video_btn"
-            app:layout_constraintEnd_toEndOf="@+id/video_btn"
-            app:layout_constraintHorizontal_bias="0.47"
-            app:layout_constraintStart_toStartOf="@+id/video_btn"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="127dp"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            android:text="Convert To MP3, Compress,Trim Video"
-            android:textAlignment="center"
-            android:textColor="@color/grey"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@+id/video_btn"
-            app:layout_constraintEnd_toEndOf="@+id/video_btn"
-            app:layout_constraintStart_toStartOf="@+id/video_btn"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-        <android.widget.Button
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="30dp"
             android:id="@+id/text_btn"
             android:layout_width="151dp"
             android:layout_height="200dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/home_page_text_btn"
             android:elevation="0dp"
             android:padding="20dp"
             android:textColor="@color/dark_blue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/folder_btn"
-            app:layout_constraintHorizontal_bias="0.700"
+            app:layout_constraintHorizontal_bias="0.565"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/video_btn"
-            app:layout_constraintVertical_bias="0.400" />
+            app:layout_constraintTop_toBottomOf="@+id/img_btn"
+            app:layout_constraintVertical_bias="0.286" />
 
         <android.widget.Button
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="30dp"
-
             android:id="@+id/folder_btn"
+
             android:layout_width="151dp"
             android:layout_height="200dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/home_page_folder_btn"
             android:elevation="0dp"
             android:padding="20dp"
             android:textColor="@color/dark_blue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.825"
+            app:layout_constraintHorizontal_bias="0.873"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/music_btn"
-            app:layout_constraintVertical_bias="0.400" />
+            app:layout_constraintTop_toBottomOf="@+id/pdf_btn"
+            app:layout_constraintVertical_bias="0.286" />
 
         <ImageView
 

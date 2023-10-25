@@ -40,31 +40,6 @@
 
 
     <ImageButton
-        android:id="@+id/compressVideoBtn"
-        android:layout_width="340dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/custom_button"
-        android:src="@drawable/custom_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Compress Video"
-        android:textColor="@color/dark_blue"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/compressVideoBtn"
-        app:layout_constraintEnd_toEndOf="@+id/compressVideoBtn"
-        app:layout_constraintStart_toStartOf="@+id/compressVideoBtn"
-        app:layout_constraintTop_toTopOf="@+id/compressVideoBtn" />
-
-
-    <ImageButton
         android:id="@+id/convertToMp3Btn"
         android:layout_width="340dp"
         android:layout_height="80dp"
@@ -74,8 +49,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/compressVideoBtn"
-        app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintVertical_bias="0.059" />
 
     <TextView
         android:id="@+id/textView17"
