@@ -1,7 +1,9 @@
 plugins {
     id("com.android.application")
 }
-
+repositories {
+    mavenCentral()
+}
 android {
     namespace = "com.example.convertease"
     compileSdk = 34
@@ -48,5 +50,12 @@ dependencies {
     implementation("io.github.tutorialsandroid:filepicker:9.2.5")
     implementation ("androidx.activity:activity:1.8.0")
     implementation ("androidx.fragment:fragment:1.6.1")
+    implementation ("com.iceteck.silicompressorr:silicompressor:2.2.4")
 
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }

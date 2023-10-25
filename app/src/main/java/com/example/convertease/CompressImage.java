@@ -123,6 +123,8 @@ public class CompressImage extends Fragment {
 
             @Override
             public void onClick(View view) {
+                Log.d("logtest","pathis " + NewImgPath);
+
                 if (imagePath != null) {
                     Bitmap bitmap = decodeFile(imagePath);
                     int targetFileSize = 200 * 1024;
@@ -190,7 +192,6 @@ public class CompressImage extends Fragment {
         return BitmapFactory.decodeFile(filePath, options);
     }
     private String compressImage(Bitmap originalBitmap, int targetQuality) {
-        String compressedImagePath = null;
         try {
             Bitmap.CompressFormat format = Bitmap.CompressFormat.JPEG;
             int quality = 80;
