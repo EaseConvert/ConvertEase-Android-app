@@ -1,13 +1,39 @@
 package com.example.convertease;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Context;
+import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
+import android.net.Uri;
 import android.os.Bundle;
 
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.example.convertease.Data.myDBHandler;
+import com.example.convertease.model.History;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,6 +41,10 @@ import android.widget.ImageButton;
  * create an instance of this fragment.
  */
 public class MergePDF extends Fragment {
+    private static final int REQUEST_CODE_PICK_PDF = 1;
+    private List<Uri> mSelectedPdf = new ArrayList<>();
+    Context thiscontext;
+    File mergedPdfFile;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,6 +92,8 @@ public class MergePDF extends Fragment {
         // Inflate the layout for this fragment
         View   view =inflater.inflate(R.layout.fragment_merge_pdf, container, false);
         ImageButton backButton = view.findViewById(R.id.backBtn);
+        ImageButton selectFileBtn = view.findViewById(R.id.selectFileBtn);
+        ImageButton mergePdfBtn = view.findViewById(R.id.mergePdfbtn);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +101,76 @@ public class MergePDF extends Fragment {
                 getParentFragmentManager().popBackStack();
             }
         });
+        selectFileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickPdf();
+            }
+        });
+        mergePdfBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mSelectedPdf.isEmpty()){
+                    Toast.makeText(getContext(), "Please Select PDF File", Toast.LENGTH_SHORT).show();
+                }
+                try{
+                    File sdcard = Environment.getExternalStorageDirectory();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+                    String formattedDate = sdf.format(new Date());
+                    String fileName = formattedDate + ".pdf";
+                    File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
+                    mergedPdfFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) , fileName);
+                    FileOutputStream outputStream = new FileOutputStream(mergedPdfFile);
+
+
+
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
         return view;
+    }
+    private void pickPdf() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.setType("application/pdf");
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
+        startActivityForResult(intent,REQUEST_CODE_PICK_PDF);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE_PICK_PDF && resultCode == RESULT_OK){
+            mSelectedPdf.clear();
+            if(data != null) {
+                if(data.getData() != null){
+                    mSelectedPdf.add(data.getData());
+                }
+                else if(data.getClipData() != null){
+                    for (int i = 0;i<data.getClipData().getItemCount();i++){
+                        mSelectedPdf.add(data.getClipData().getItemAt(i).getUri());
+                    }
+                }
+                Toast.makeText(getContext(), "Selected " + mSelectedPdf.size() + " PDF Files", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(getContext(), "Error With PDF", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    }
+    private void updateHistory() {
+        myDBHandler db = new myDBHandler (thiscontext);
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        String currentDate = dateFormat.format(calendar.getTime());
+        History history  = new History();
+        history.setName("PDF Merged");
+        history.setPath("");
+        history.setDate(currentDate);
+        db.addHistory(history);
+        Log.d("dbHistory","Name "+history.getName());
     }
 }

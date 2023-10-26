@@ -1,5 +1,6 @@
 package com.example.convertease;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +17,7 @@ import android.widget.ImageButton;
  */
 public class SplitPDF extends Fragment {
 
+    private static final int REQUEST_CODE_PICK_PDF = 1;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -62,6 +64,8 @@ public class SplitPDF extends Fragment {
         // Inflate the layout for this fragment
         View   view =inflater.inflate(R.layout.fragment_split_pdf, container, false);
         ImageButton backButton = view.findViewById(R.id.backBtn);
+        ImageButton selectFileBtn = view.findViewById(R.id.selectFileBtn);
+        ImageButton splitBtn = view.findViewById(R.id.splitbtn);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +73,23 @@ public class SplitPDF extends Fragment {
                 getParentFragmentManager().popBackStack();
             }
         });
+        selectFileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickPdf();
+            }
+        });
+        splitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         return view;
+    }
+    private void pickPdf() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.setType("application/pdf");
+        startActivityForResult(intent,REQUEST_CODE_PICK_PDF);
     }
 }

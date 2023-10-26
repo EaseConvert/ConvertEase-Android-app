@@ -54,7 +54,7 @@
         app:layout_constraintVertical_bias="0.080" />
 
     <ImageButton
-        android:id="@+id/splitPdfbtn"
+        android:id="@+id/splitbtn"
         android:layout_width="340dp"
         android:layout_height="80dp"
         android:background="@drawable/custom_button"
@@ -84,17 +84,17 @@
         android:text="Split PDF"
         android:textColor="@color/dark_blue"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/splitPdfbtn"
-        app:layout_constraintEnd_toEndOf="@+id/splitPdfbtn"
-        app:layout_constraintStart_toStartOf="@+id/splitPdfbtn"
-        app:layout_constraintTop_toTopOf="@+id/splitPdfbtn" />
+        app:layout_constraintBottom_toBottomOf="@+id/splitbtn"
+        app:layout_constraintEnd_toEndOf="@+id/splitbtn"
+        app:layout_constraintStart_toStartOf="@+id/splitbtn"
+        app:layout_constraintTop_toTopOf="@+id/splitbtn" />
 
     <EditText
         android:id="@+id/pageRange"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="Enter Page Range (e.g., 1-3)"
-        app:layout_constraintBottom_toTopOf="@+id/splitPdfbtn"
+        app:layout_constraintBottom_toTopOf="@+id/splitbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"

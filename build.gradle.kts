@@ -11,6 +11,7 @@ repositories {
 //    maven("https://jitpack.io")
     mavenCentral()
     google()
+    jcenter();
 
 }
 

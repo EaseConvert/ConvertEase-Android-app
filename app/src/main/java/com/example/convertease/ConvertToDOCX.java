@@ -1,20 +1,44 @@
 package com.example.convertease;
 
+import static android.app.Activity.RESULT_OK;
+import static android.content.Intent.ACTION_PICK;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
+import android.net.Uri;
 import android.os.Bundle;
-
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-
+import com.example.convertease.Data.myDBHandler;
+import com.example.convertease.model.History;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+//import org.apache.pdfbox.pdmodel.PDDocument;
+//import org.apache.pdfbox.text.PDFTextStripper;
+//import org.apache.poi.xwpf.usermodel.XWPFDocument;
+//import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+//import org.apache.poi.xwpf.usermodel.XWPFRun;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ConvertToDOCX#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class ConvertToDOCX extends Fragment {
+    private static final int REQUEST_CODE_PICK_PDF = 1;
+    Context thiscontext;
+    String pdfPath;
+    private ArrayList<String> selectedPdfPath = new ArrayList<>();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,6 +86,9 @@ public class ConvertToDOCX extends Fragment {
         // Inflate the layout for this fragment
         View   view =inflater.inflate(R.layout.fragment_convert_to_docx, container, false);
         ImageButton backButton = view.findViewById(R.id.backBtn);
+        thiscontext = container.getContext();
+        ImageButton selectFileBtn = view.findViewById(R.id.selectFileBtn);
+        ImageButton convertToDocxBtn = view.findViewById(R.id.convertToDocxBtn);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +96,30 @@ public class ConvertToDOCX extends Fragment {
                 getParentFragmentManager().popBackStack();
             }
         });
+        selectFileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate back to the previous fragment
+                pickPdf();
+            }
+        });
+        convertToDocxBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate back to the previous fragment
+//               convertPDFtoDOC();
+            }
+        });
         return view;
     }
+
+    private void pickPdf() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.setType("application/pdf");
+//        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
+        startActivityForResult(intent,REQUEST_CODE_PICK_PDF);
+    }
+
+
+
 }

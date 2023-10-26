@@ -4,14 +4,17 @@ import static android.app.Activity.RESULT_OK;
 import static android.content.Intent.ACTION_OPEN_DOCUMENT;
 import static android.content.Intent.ACTION_PICK;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +24,11 @@ import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -95,6 +101,7 @@ public class ConvertTextToUppercase extends Fragment {
             @Override
             public void onClick(View v) {
                 // Navigate back to the previous fragment
+
                 pickTextFile();
             }
         });
@@ -102,13 +109,15 @@ public class ConvertTextToUppercase extends Fragment {
             @Override
             public void onClick(View v) {
                 // Navigate back to the previous fragment
-                readText(textFilePath);
+               String textOfFile = readTextFromFile(thiscontext,textFilePath);
+               Log.d("Filetext","text" + textOfFile.isEmpty());
             }
         });
 
 
         return view;
     }
+
     private void pickTextFile() {
         Intent iGallery = new Intent(ACTION_OPEN_DOCUMENT);
         iGallery.addCategory(Intent.CATEGORY_OPENABLE);
@@ -120,35 +129,64 @@ public class ConvertTextToUppercase extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 42 && resultCode == RESULT_OK){
-            if(data != null){
+        if (requestCode == 42 && resultCode == RESULT_OK) {
+            if (data != null) {
                 Uri uri = data.getData();
-                textFilePath = uri.getPath();
-                textFilePath= textFilePath.substring(textFilePath.indexOf((":") + 1));
-                Log.d("textdata","data is " + textFilePath);
-//                Toast.makeText(thiscontext,"Permission Denied !", Toast.LENGTH_SHORT).show();
+                textFilePath = getPathFromUri(uri);
+                Log.d("textdata", "File path is " + uri);
             }
         }
     }
+    private String getPathFromUri(Uri fileUri) {
+        String filePath = null;
+        if (fileUri != null) {
+            ContentResolver contentResolver = requireActivity().getContentResolver();
+            Cursor cursor = contentResolver.query(fileUri, null, null, null, null);
 
-    private void readText(String input){
-
-        File file = new File(input);
-        StringBuilder text = new StringBuilder();
-        Log.d("textdata","this code is running" + text);
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-            while ((line = br.readLine()) != null) {
-                text.append(line);
-                text.append("\n");
-
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    int columnIndex = cursor.getColumnIndex(MediaStore.Images.Media.DATA);
+                    if (columnIndex != -1) {
+                        filePath = cursor.getString(columnIndex);
+                    }
+                }
+                cursor.close();
             }
-            br.close();
-        }catch(IOException e){
-                e.printStackTrace();
         }
-        fileData = text.toString();
-        Log.d("textdata","data is " + fileData);
+        return filePath;
+    }
+    public String readTextFromFile(Context context, String fileName) {
+        StringBuilder stringBuilder = new StringBuilder();
+        String line;
+        FileReader fr = null;
+        String fileContents;
+
+        try {
+            // Open the file from the assets folder
+            fr = new FileReader(fileName);
+
+            // Create a BufferedReader to read the file
+            BufferedReader bufferedReader = new BufferedReader(fr);
+
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+        } catch (FileNotFoundException e) {
+            Toast.makeText(thiscontext, "File Not Found!", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            // Close the FileReader object
+            if (fr != null) {
+                try {
+                    fr.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        fileContents = stringBuilder.toString();
+        return fileContents;
     }
 }
