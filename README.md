@@ -111,12 +111,3 @@ ConvertEase is a powerful multimedia converter Android app that offers a wide ra
 ---
 
 © 2023 ConvertEase. All rights reserved.
-ert@gmail.com).
-
-## Contact
-
-📧 For questions, suggestions, or support, feel free to contact us at [ConvertEase](mailto:easeconvert@gmail.com).
-
----
-
-© 2023 ConvertEase. All rights reserved.
