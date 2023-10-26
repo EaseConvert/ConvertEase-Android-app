@@ -1,67 +1,73 @@
-# ConvertEase: Multimedia Converter Android App
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Center the image */
+        .center-image {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>ConvertEase: Multimedia Converter Android App</h1>
 
-![ConvertEase Logo](https://drive.google.com/uc?export=view&id=1bXin5Fm40mgZrxGshN3QbKPw9DhcBCzl)
-&nbsp;
-&nbsp;
-<br/>
-ConvertEase is a powerful multimedia converter Android app that offers a wide range of features, making it easy to convert various media formats. Whether you need to convert images, videos, audio files, or documents, ConvertEase has got you covered.
+    <!-- Centered Image -->
+    <div class="center-image">
+        <img src="https://drive.google.com/uc?export=view&id=1bXin5Fm40mgZrxGshN3QbKPw9DhcBCzl" alt="ConvertEase Logo">
+    </div>
 
-## Table of Contents
+    <br>
+    <br>
 
-1. [Download the APK](#download-the-apk)
-2. [Features](#features)
-3. [Installation](#installation)
-4. [Usage](#usage)
-5. [Bug Reporting](#bug-reporting)
-6. [Contact](#contact)
+    <h2>ConvertEase is a powerful multimedia converter Android app that offers a wide range of features, making it easy to convert various media formats. Whether you need to convert images, folders or documents, ConvertEase has got you covered.</h2>
 
-## Download the APK
+    <h2>Table of Contents</h2>
+    <ol>
+        <li><a href="#download-the-apk">Download the APK</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#bug-reporting">Bug Reporting</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ol>
 
-📥 Get the latest version of ConvertEase by downloading the APK from our [Here](https://your-app-download-link.com). Install it on your Android device to unlock a world of multimedia conversion possibilities.
+    <!-- Download the APK section -->
+    <h2 id="download-the-apk">Download the APK</h2>
+    <p>📥 Get the latest version of ConvertEase by downloading the APK from our <a href="https://your-app-download-link.com">Here</a>. Install it on your Android device to unlock a world of multimedia conversion possibilities.</p>
 
-## Features
+    <!-- Features section -->
+    <h2 id="features">Features</h2>
+    <ul>
+        <li>✨ <strong>Images To PDF</strong>: Easily convert your image files into PDF documents.</li>
+        <li>✨ <strong>Compress Image</strong>: Reduce the file size of your images without compromising quality.</li>
+        <li>✨ <strong>Convert Text to Uppercase and Lowercase</strong>: Quickly change the case of text in .txt files.</li>
+        <li>✨ <strong>Compress Folder into Zip File</strong>: Create compressed zip files from entire folders.</li>
+        <li>✨ <strong>Convert PDF into DOCX File</strong>: Convert PDF documents to editable DOCX files.</li>
+        <li>✨ <strong>Merge PDFs</strong>: Combine multiple PDF documents into a single file.</li>
+        <li>✨ <strong>Split PDF</strong>: Divide PDFs into smaller, manageable parts.</li>
+    </ul>
 
-✨ **Images To PDF**: Easily convert your image files into PDF documents.
+    <!-- Installation section -->
+    <h2 id="installation">Installation</h2>
+    <p>📲 To install ConvertEase on your Android device, follow these steps:</p>
+    <ol>
+        <li>Download the APK from the <a href="https://your-app-download-link.com">Here</a>.</li>
+        <li>Open the downloaded APK file.</li>
+        <li>Follow the on-screen instructions to complete the installation.</li>
+    </ol>
 
-✨ **Compress Image**: Reduce the file size of your images without compromising quality.
+    <!-- Usage section -->
+    <h2 id="usage">Usage</h2>
+    <p>🚀 ConvertEase is designed for ease of use. Explore our user guide to learn how to make the most of our app.</p>
 
-✨ **Compress Video**: Shrink video files to save space on your device.
+    <!-- Bug Reporting section -->
+    <h2 id="bug-reporting">Bug Reporting</h2>
+    <p>🐞 Found a bug or have feedback? We'd love to hear from you. Please report issues by sending an email to <a href="mailto:easeconvert@gmail.com">ConvertEase</a>.</p>
 
-✨ **Convert To MP3**: Transform various audio formats into MP3 files.
+    <!-- Contact section -->
+    <h2 id="contact">Contact</h2>
+    <p>📧 For questions, suggestions, or support, feel free to contact us at <a href="mailto:easeconvert@gmail.com">ConvertEase</a>.</p>
 
-✨ **MP3 To WAV**: Convert your MP3 audio files into WAV format.
-
-✨ **Convert Text to Uppercase and Lowercase**: Quickly change the case of text in .txt files.
-
-✨ **Compress Folder into Zip File**: Create compressed zip files from entire folders.
-
-✨ **Convert PDF into DOCX File**: Convert PDF documents to editable DOCX files.
-
-✨ **Merge PDFs**: Combine multiple PDF documents into a single file.
-
-✨ **Split PDF**: Divide PDFs into smaller, manageable parts.
-
-## Installation
-
-📲 To install ConvertEase on your Android device, follow these steps:
-
-1. Download the APK from the [Here](https://your-app-download-link.com).
-2. Open the downloaded APK file.
-3. Follow the on-screen instructions to complete the installation.
-
-## Usage
-
-🚀 ConvertEase is designed for ease of use. Explore our user guide to learn how to make the most of our app:
-
-
-## Bug Reporting
-
-🐞 Found a bug or have feedback? We'd love to hear from you. Please report issues by sending an email to [ConvertEase](mailto:easeconvert@gmail.com).
-
-## Contact
-
-📧 For questions, suggestions, or support, feel free to contact us at [ConvertEase](mailto:easeconvert@gmail.com).
-
----
-
-© 2023 ConvertEase. All rights reserved.
+    <p>© 2023 ConvertEase. All rights reserved.</p>
+</body>
+</html>
