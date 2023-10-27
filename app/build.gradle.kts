@@ -65,6 +65,8 @@ dependencies {
     implementation ("com.iceteck.silicompressorr:silicompressor:2.2.4")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation ("com.itextpdf:itext7-core:8.0.2")
+
 }
 
 

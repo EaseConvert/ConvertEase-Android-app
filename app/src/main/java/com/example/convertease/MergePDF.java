@@ -17,23 +17,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import com.example.convertease.Data.myDBHandler;
 import com.example.convertease.model.History;
-import org.apache.pdfbox.io.RandomAccessStreamCache;
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.layout.Document;
 
-import org.apache.pdfbox.multipdf.PDFMergerUtility;
-import org.apache.pdfbox.pdmodel.*;
-import org.apache.pdfbox.io.*;
-import org.apache.pdfbox.pdfparser.*;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import org.apache.pdfbox.multipdf.PdfCopy;
+
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -123,32 +119,51 @@ public class MergePDF extends Fragment {
                     String formattedDate = sdf.format(new Date());
                     String fileName = formattedDate + ".pdf";
                     File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
-                    mergedPdfFile = new File(dir , fileName);
+                    File mergedPdfFile = new File(dir , fileName);
                     FileOutputStream outputStream = new FileOutputStream(mergedPdfFile);
 
-                    PDFMergerUtility pdfMergerUtility = new PDFMergerUtility();
-                    pdfMergerUtility.setDestinationFileName(mergedPdfFile.getAbsolutePath());
-                    for (Uri pdfUri : mSelectedPdf) {
-                        try {
-                            // Convert the Uri to a File path
-                            String pdfFilePath = getRealPathFromUri(pdfUri);
-                            pdfMergerUtility.addSource(pdfFilePath);
-                            Log.d("pdf","pdf Selected "+pdfFilePath);
-                            RandomAccessStreamCache randomAccessStreamCache = new RandomAccessStreamCacheImpl();
-                            pdfMergerUtility.setStreamCache(randomAccessStreamCache);
-                            pdfMergerUtility.mergeDocuments();
-                            randomAccessStreamCache.close();
+                    Document document = new Document(mergedPdfFile);
+                    PdfCopy copy = new PdfCopy(document);
+                    document.open();
 
-                            Toast.makeText(getContext(), "PDF Merged Successfully!!!", Toast.LENGTH_SHORT).show();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            Toast.makeText(getContext(), "PDF Merged Failed!!!", Toast.LENGTH_SHORT).show();
+                    for (Uri pdfUri: mSelectedPdf){
+                        PdfReader reader = new PdfReader(getContentResolver().openInputStream(pdfUri));
+                        for (int i = 1; i <= reader.getNumberOfPages(); i++) {
+                            PdfImportedPage importedPage = copy.getImportedPage(reader, i);
+                            document.addPage(importedPage);
                         }
+                        reader.close();
                     }
+
+                    document.close();
                     outputStream.close();
-                }
-                catch (Exception e){
-                    e.printStackTrace();
+
+                    Toast.makeText(getContext(),"PDF FILES MERGED SUCCESSFULLY",Toast.LENGTH_SHORT).show();
+
+//                    PDFMergerUtility pdfMergerUtility = new PDFMergerUtility();
+//                    pdfMergerUtility.setDestinationFileName(mergedPdfFile.getAbsolutePath());
+//                    for (Uri pdfUri : mSelectedPdf) {
+//                        try {
+//                            // Convert the Uri to a File path
+//                            String pdfFilePath = getRealPathFromUri(pdfUri);
+//                            pdfMergerUtility.addSource(pdfFilePath);
+//                            Log.d("pdf","pdf Selected "+pdfFilePath);
+//                            MemoryUsageSetting memoryUsageSetting = MemoryUsageSetting.setupMainMemoryOnly();
+////                            pdfMergerUtility.setDestinationFileName(mergedPdfFile.getAbsolutePath());
+////                            pdfMergerUtility.setMemoryUsageSetting(memoryUsageSetting);
+////                            pdfMergerUtility.mergeDocuments();
+//                            Toast.makeText(getContext(), "PDF Merged Successfully!!!", Toast.LENGTH_SHORT).show();
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                            Toast.makeText(getContext(), "PDF Merged Failed!!!", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                    outputStream.close();
+
+          }
+               catch (Exception e){
+                e.printStackTrace();
+
                 }
 //                updateHistory();
             }
@@ -172,29 +187,55 @@ public class MergePDF extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE_PICK_PDF && resultCode == RESULT_OK){
-            mSelectedPdf.clear();
-            if(data != null) {
-                if(data.getData() != null){
-                    mSelectedPdf.add(data.getData());
-                }
-                else if(data.getClipData() != null){
-                    for (int i = 0;i<data.getClipData().getItemCount();i++){
-                        mSelectedPdf.add(data.getClipData().getItemAt(i).getUri());
+        public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            if(requestCode == REQUEST_CODE_PICK_PDF && resultCode == RESULT_OK){
+                mSelectedPdf.clear();
+                if(data != null) {
+                    if(data.getData() != null){
+                        mSelectedPdf.add(data.getData());
                     }
-                }
-                Toast toast = Toast.makeText(getContext(), "Selected " + mSelectedPdf.size() + " PDF Files", Toast.LENGTH_SHORT);
-                toast.setDuration(1000);
-                toast.show();
-            }
-            else{
-                Toast.makeText(getContext(), "Error With PDF", Toast.LENGTH_SHORT).show();
-            }
+                    else if(data.getClipData() != null){
+                        for (int i = 0;i<data.getClipData().getItemCount();i++){
+                            mSelectedPdf.add(data.getClipData().getItemAt(i).getUri());
+                        }
+                    }
+                    Toast.makeText(getContext(), "Selected " + mSelectedPdf.size() + " PDF Files", Toast.LENGTH_SHORT).show();
 
+
+                }
+                else{
+                    Toast.makeText(getContext(), "Error With PDF", Toast.LENGTH_SHORT).show();
+                }
+
+            }
         }
-    }
+
+
+
+//    private void saveMergedPDF() {
+//        if (mSelectedPdf.isEmpty()) {
+//            Toast.makeText(getContext(), "Please Select PDF Files", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//        try {
+//            File sdcard = Environment.getExternalStorageDirectory();
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+//            String formattedDate = sdf.format(new Date());
+//            String fileName = formattedDate + ".pdf";
+//            File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
+//            mergedPdfFile = new File(dir , fileName);
+//            FileOutputStream outputStream = new FileOutputStream(mergedPdfFile);
+//            mergePDFs(mSelectedPdf, mergedPdfFile.getAbsolutePath());
+//            outputStream.close();
+//            // Update the history
+//
+//            updateHistory();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
     private void updateHistory() {
         myDBHandler db = new myDBHandler (thiscontext);
         Calendar calendar = Calendar.getInstance();
