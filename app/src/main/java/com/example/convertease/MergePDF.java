@@ -4,11 +4,13 @@ import static android.app.Activity.RESULT_OK;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +21,19 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.example.convertease.Data.myDBHandler;
 import com.example.convertease.model.History;
-//import com.itextpdf.text.Document;
+import org.apache.pdfbox.io.RandomAccessStreamCache;
+
+import org.apache.pdfbox.multipdf.PDFMergerUtility;
+import org.apache.pdfbox.pdmodel.*;
+import org.apache.pdfbox.io.*;
+import org.apache.pdfbox.pdfparser.*;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -111,18 +123,46 @@ public class MergePDF extends Fragment {
                     String formattedDate = sdf.format(new Date());
                     String fileName = formattedDate + ".pdf";
                     File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
-                    mergedPdfFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) , fileName);
+                    mergedPdfFile = new File(dir , fileName);
                     FileOutputStream outputStream = new FileOutputStream(mergedPdfFile);
 
+                    PDFMergerUtility pdfMergerUtility = new PDFMergerUtility();
+                    pdfMergerUtility.setDestinationFileName(mergedPdfFile.getAbsolutePath());
+                    for (Uri pdfUri : mSelectedPdf) {
+                        try {
+                            // Convert the Uri to a File path
+                            String pdfFilePath = getRealPathFromUri(pdfUri);
+                            pdfMergerUtility.addSource(pdfFilePath);
+                            Log.d("pdf","pdf Selected "+pdfFilePath);
+                            RandomAccessStreamCache randomAccessStreamCache = new RandomAccessStreamCacheImpl();
+                            pdfMergerUtility.setStreamCache(randomAccessStreamCache);
+                            pdfMergerUtility.mergeDocuments();
+                            randomAccessStreamCache.close();
 
-
+                            Toast.makeText(getContext(), "PDF Merged Successfully!!!", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Toast.makeText(getContext(), "PDF Merged Failed!!!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    outputStream.close();
                 }
                 catch (Exception e){
                     e.printStackTrace();
                 }
+//                updateHistory();
             }
         });
         return view;
+    }
+    private String getRealPathFromUri(Uri uri) {
+        String[] projection = {MediaStore.Files.FileColumns.DATA};
+        Cursor cursor = getContext().getContentResolver().query(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA);
+        cursor.moveToFirst();
+        String filePath = cursor.getString(column_index);
+        cursor.close();
+        return filePath;
     }
     private void pickPdf() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -145,7 +185,9 @@ public class MergePDF extends Fragment {
                         mSelectedPdf.add(data.getClipData().getItemAt(i).getUri());
                     }
                 }
-                Toast.makeText(getContext(), "Selected " + mSelectedPdf.size() + " PDF Files", Toast.LENGTH_SHORT).show();
+                Toast toast = Toast.makeText(getContext(), "Selected " + mSelectedPdf.size() + " PDF Files", Toast.LENGTH_SHORT);
+                toast.setDuration(1000);
+                toast.show();
             }
             else{
                 Toast.makeText(getContext(), "Error With PDF", Toast.LENGTH_SHORT).show();
@@ -165,4 +207,5 @@ public class MergePDF extends Fragment {
         db.addHistory(history);
         Log.d("dbHistory","Name "+history.getName());
     }
+
 }
