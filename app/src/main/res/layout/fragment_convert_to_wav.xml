@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_blue"
     tools:context=".ImgToPdfFragment">
 
     <include
@@ -16,15 +17,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Audio"
-        android:textColor="@color/dark_blue"
-        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/backBtn"
         app:layout_constraintTop_toBottomOf="@+id/include4"
-        app:layout_constraintVertical_bias="0.039" />
-
+        app:layout_constraintVertical_bias="0.036" />
 
     <ImageButton
         android:id="@+id/backBtn"
@@ -57,8 +57,8 @@
         android:id="@+id/convertToWavBtn"
         android:layout_width="340dp"
         android:layout_height="80dp"
-        android:background="@drawable/custom_button"
-        android:src="@drawable/custom_button"
+        android:background="@drawable/generate_button"
+        android:src="@drawable/generate_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Audio"
-        android:textColor="@color/dark_blue"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/selectAudioBtn"
         app:layout_constraintEnd_toEndOf="@+id/selectAudioBtn"
@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Convert To WAV"
-        android:textColor="@color/dark_blue"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/convertToWavBtn"
         app:layout_constraintEnd_toEndOf="@+id/convertToWavBtn"

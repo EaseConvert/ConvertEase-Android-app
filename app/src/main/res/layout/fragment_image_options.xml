@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/dark_blue"
     xmlns:tools="http://schemas.android.com/tools">
 
     <include
@@ -15,15 +16,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Operation"
-        android:textColor="@color/dark_blue"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/backBtn"
         app:layout_constraintTop_toBottomOf="@+id/include"
-        app:layout_constraintVertical_bias="0.039" />
-
+        app:layout_constraintVertical_bias="0.035" />
 
     <ImageButton
         android:id="@+id/backBtn"
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Image To PDF"
-        android:textColor="@color/dark_blue"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageToPdfBtn"
         app:layout_constraintEnd_toEndOf="@+id/imageToPdfBtn"
@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Compress"
-        android:textColor="@color/dark_blue"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/compressBtn"
         app:layout_constraintEnd_toEndOf="@+id/compressBtn"

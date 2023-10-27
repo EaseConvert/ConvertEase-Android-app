@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_blue"
     tools:context=".ImgToPdfFragment">
 
     <include
@@ -16,15 +17,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Images"
-        android:textColor="@color/dark_blue"
-        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/backBtn"
         app:layout_constraintTop_toBottomOf="@+id/include4"
-        app:layout_constraintVertical_bias="0.039" />
-
+        app:layout_constraintVertical_bias="0.036" />
 
     <ImageButton
         android:id="@+id/backBtn"
@@ -51,14 +51,14 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.080" />
+        app:layout_constraintVertical_bias="0.078" />
 
     <ImageButton
         android:id="@+id/compressImageBtn"
         android:layout_width="340dp"
         android:layout_height="80dp"
-        android:background="@drawable/custom_button"
-        android:src="@drawable/custom_button"
+        android:background="@drawable/generate_button"
+        android:src="@drawable/generate_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Image"
-        android:textColor="@color/dark_blue"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/selectImgBtn"
         app:layout_constraintEnd_toEndOf="@+id/selectImgBtn"
@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Compress Image"
-        android:textColor="@color/dark_blue"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/compressImageBtn"
         app:layout_constraintEnd_toEndOf="@+id/compressImageBtn"

@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_blue"
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="360dp"
     android:theme="@style/AppTheme.Light"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/dark_blue"
         android:theme="@style/MyTheme.MainScreen"
         tools:context=".MainActivity">
 
@@ -43,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/tiltneon"
                         android:text="ConvertEase"
-                        android:textColor="@color/dark_blue"
+                        android:textColor="@color/white"
                         android:textSize="35sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +64,7 @@
                         app:layout_constraintStart_toEndOf="@+id/textView10"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.372"
-                        app:tint="@color/dark_blue" />
+                        app:tint="@color/white" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

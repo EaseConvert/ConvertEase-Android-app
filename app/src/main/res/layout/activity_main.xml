@@ -23,8 +23,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:background="@drawable/gradient_bg"
-        app:itemIconTint="@color/dark_blue"
-        app:itemTextColor="@color/dark_blue"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@drawable/bottom_nav_item_selector"
         app:itemIconSize="35dp"
         app:menu="@menu/bottom_nav"
         />

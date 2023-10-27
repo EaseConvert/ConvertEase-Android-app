@@ -12,4 +12,7 @@
     <color name="folder_bg">#CAFCFF</color>
     <color name="text_bg">#DFCFDF</color>
     <color name="grey">#272829</color>
+    <color name="bg_blue">#DAFFFB</color>
+    <color name="d_bg">#053B50</color>
+    <color name="generate_b">#DAC0A3</color>
 </resources>
