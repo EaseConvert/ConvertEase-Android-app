@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment {
 
         Button imgBtn = view.findViewById(R.id.img_btn);
         Button pdfBtn = view.findViewById(R.id.pdf_btn);
-//        Button videoBtn = view.findViewById(R.id.video_btn);
+        ImageButton videoBtn = view.findViewById(R.id.VideoBtn);
 //        Button musicBtn = view.findViewById(R.id.music_btn);
         Button textBtn = view.findViewById(R.id.text_btn);
         Button folderBtn = view.findViewById(R.id.folder_btn);
@@ -105,16 +105,16 @@ public class HomeFragment extends Fragment {
 //                transaction.commit();
 //            }
 //        });
-//        videoBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Switch to the ImageOptionsFragment
-//                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-//                transaction.replace(R.id.frame_layout, new VideoOptionsFragment());
-//                transaction.addToBackStack(null); // Optionally, add to the back stack
-//                transaction.commit();
-//            }
-//        });
+        videoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Switch to the ImageOptionsFragment
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new VideoOptionsFragment());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });
         folderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

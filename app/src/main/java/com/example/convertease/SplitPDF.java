@@ -65,7 +65,7 @@ public class SplitPDF extends Fragment {
         View   view =inflater.inflate(R.layout.fragment_split_pdf, container, false);
         ImageButton backButton = view.findViewById(R.id.backBtn);
         ImageButton selectFileBtn = view.findViewById(R.id.selectFileBtn);
-        ImageButton splitBtn = view.findViewById(R.id.splitbtn);
+//        ImageButton splitBtn = view.findViewById(R.id.splitbtn);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,12 +79,12 @@ public class SplitPDF extends Fragment {
                 pickPdf();
             }
         });
-        splitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        splitBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
         return view;
     }
     private void pickPdf() {

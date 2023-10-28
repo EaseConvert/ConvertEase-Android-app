@@ -70,7 +70,7 @@
                         app:layout_constraintStart_toEndOf="@+id/textView10"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.372"
-                        app:tint="@color/dark_blue" />
+                        app:tint="@color/white" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

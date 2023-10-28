@@ -1,24 +1,34 @@
 package com.example.convertease;
 
-import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.ImageButton;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.convertease.databinding.ActivityMainBinding;
-
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.example.convertease.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String selectedTheme = sharedPreferences.getString("selected_theme", "light");
+
+        if ("dark".equals(selectedTheme)) {
+            setTheme(R.style.AppTheme_Dark);
+            Log.d("Theme","Dark Theme");
+        } else {
+            setTheme(R.style.AppTheme_Light);
+            Log.d("Theme","Light Theme");
+        }
         super.onCreate(savedInstanceState);
+
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -33,10 +43,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-
-//        ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.MANAGE_EXTERNAL_STORAGE,
-//            Manifest.permission.READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
-//        // Replace this with the appropriate initial fragment setup
         replaceFragment(new HomeFragment());
     }
 

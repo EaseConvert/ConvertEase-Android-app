@@ -25,9 +25,7 @@ import com.example.convertease.Data.myDBHandler;
 import com.example.convertease.model.History;
 import com.itextpdf.kernel.pdf.PdfReader;
 import com.itextpdf.layout.Document;
-
-import org.apache.pdfbox.multipdf.PdfCopy;
-
+//import org.apache.pdfbox.multipdf.PdfCopy;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -122,21 +120,21 @@ public class MergePDF extends Fragment {
                     File mergedPdfFile = new File(dir , fileName);
                     FileOutputStream outputStream = new FileOutputStream(mergedPdfFile);
 
-                    Document document = new Document(mergedPdfFile);
-                    PdfCopy copy = new PdfCopy(document);
-                    document.open();
+//                    Document document = new Document(mergedPdfFile);
+//                    PdfCopy copy = new PdfCopy(document);
+//                    document.open();
+//
+//                    for (Uri pdfUri: mSelectedPdf){
+//                        PdfReader reader = new PdfReader(getContentResolver().openInputStream(pdfUri));
+//                        for (int i = 1; i <= reader.getNumberOfPages(); i++) {
+//                            PdfImportedPage importedPage = copy.getImportedPage(reader, i);
+//                            document.addPage(importedPage);
+//                        }
+//                        reader.close();
+//                    }
 
-                    for (Uri pdfUri: mSelectedPdf){
-                        PdfReader reader = new PdfReader(getContentResolver().openInputStream(pdfUri));
-                        for (int i = 1; i <= reader.getNumberOfPages(); i++) {
-                            PdfImportedPage importedPage = copy.getImportedPage(reader, i);
-                            document.addPage(importedPage);
-                        }
-                        reader.close();
-                    }
-
-                    document.close();
-                    outputStream.close();
+//                    document.close();
+//                    outputStream.close();
 
                     Toast.makeText(getContext(),"PDF FILES MERGED SUCCESSFULLY",Toast.LENGTH_SHORT).show();
 
