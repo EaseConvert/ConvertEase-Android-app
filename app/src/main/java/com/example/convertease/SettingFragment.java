@@ -1,10 +1,12 @@
 package com.example.convertease;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import android.widget.Switch;
  * create an instance of this fragment.
  */
 public class SettingFragment extends Fragment {
+    private Switch themeSwitch;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,24 +65,32 @@ public class SettingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
-        Switch themeSwitch = view.findViewById(R.id.theme_toggle_switch);
-//        themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked) {
-//                    setAppTheme(R.style.AppTheme_Dark);
-//                } else {
-//                    setAppTheme(R.style.AppTheme_Light);
-//                }
-//            }
-//        });
+        themeSwitch = view.findViewById(R.id.theme_toggle_switch);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String selectedTheme = sharedPreferences.getString("selected_theme", "light");
+
+        if ("dark".equals(selectedTheme)) {
+            themeSwitch.setChecked(true);
+        } else if ("light".equals(selectedTheme)) {
+            themeSwitch.setChecked(false);
+        }
+        themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("selected_theme", isChecked ? "dark" : "light");
+                editor.apply();
+
+                //Recreate the activity to apply the new theme
+                getActivity().recreate();
+            }
+        });
+
         return view;
     }
-    private void setAppTheme(int themeId) {
-        requireActivity().setTheme(themeId);
-        requireActivity().recreate(); // Recreate the activity to apply the new theme
-    }
+
 }

@@ -8,9 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
+import android.media.MediaCodec;
+import android.media.MediaExtractor;
+import android.media.MediaFormat;
 import android.net.Uri;
 import android.os.Bundle;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -28,6 +32,7 @@ import com.example.convertease.Data.myDBHandler;
 import com.example.convertease.model.History;
 
 import java.io.File;
+import java.nio.ByteBuffer;
 import java.util.Date;
 import java.util.Locale;
 
@@ -103,21 +108,13 @@ public class ConvertToMp3 extends Fragment {
         convertToMp3Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-          AudioExtractor audioExtractor = new AudioExtractor();
-                File sdcard = Environment.getExternalStorageDirectory();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
-                String formattedDate = sdf.format(new Date());
-                String fileName = formattedDate + ".pdf";
-                File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
-                File AudioFile = new File(dir , fileName);
 
-                destinationAudioPath  = AudioFile.getAbsolutePath();
-            try {
-                audioExtractor.VideotoAudio(selectedVideoPath, destinationAudioPath, true, false);
-               }
-               catch (IOException e) {
-                    e.printStackTrace();
-                    }
+
+                extractAudioFromVideo();
+                Toast.makeText(thiscontext,"Conversion Successfull...", Toast.LENGTH_SHORT).show();
+                updateHistory();
+
+
             }
         });
         pickVideoBtn.setOnClickListener(new View.OnClickListener() {
@@ -165,5 +162,109 @@ public class ConvertToMp3 extends Fragment {
             Toast.makeText(thiscontext,"Permission Denied !", Toast.LENGTH_SHORT).show();
         }
     }
+    private void extractAudioFromVideo() {
+        MediaExtractor extractor = new MediaExtractor();
+        MediaCodec codec = null;
+        FileOutputStream outputStream = null;
 
+        try {
+            // Path to the input video file
+            String videoPath = selectedVideoPath;
+
+            // Set the data source to the video file
+            extractor.setDataSource(videoPath);
+
+            int audioTrackIndex = -1;
+
+            // Find the audio track in the video
+            for (int i = 0; i < extractor.getTrackCount(); i++) {
+                MediaFormat format = extractor.getTrackFormat(i);
+                String mime = format.getString(MediaFormat.KEY_MIME);
+                if (mime.startsWith("audio/")) {
+                    audioTrackIndex = i;
+                    break;
+                }
+            }
+
+            if (audioTrackIndex >= 0) {
+                extractor.selectTrack(audioTrackIndex);
+
+                // Output directory for the extracted audio
+                File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "ConvertEase");
+                if (!dir.exists()) {
+                    dir.mkdirs(); // Create the directory if it doesn't exist
+                }
+
+                // Output file path for the extracted audio
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+                String formattedDate = sdf.format(new Date());
+                String fileName = formattedDate + ".mp3";
+                String outputPath = new File(dir, fileName).getAbsolutePath();
+
+                File outputAudioFile = new File(outputPath);
+                outputStream = new FileOutputStream(outputAudioFile);
+
+                MediaFormat audioFormat = extractor.getTrackFormat(audioTrackIndex);
+
+                codec = MediaCodec.createDecoderByType(audioFormat.getString(MediaFormat.KEY_MIME));
+                codec.configure(audioFormat, null, null, 0);
+                codec.start();
+
+                ByteBuffer[] codecInputBuffers = codec.getInputBuffers();
+                ByteBuffer[] codecOutputBuffers = codec.getOutputBuffers();
+                MediaCodec.BufferInfo info = new MediaCodec.BufferInfo();
+
+                boolean sawInputEOS = false;
+                boolean sawOutputEOS = false;
+
+                while (!sawOutputEOS) {
+                    if (!sawInputEOS) {
+                        int inputBufferIndex = codec.dequeueInputBuffer(-1);
+                        if (inputBufferIndex >= 0) {
+                            ByteBuffer inputBuffer = codecInputBuffers[inputBufferIndex];
+                            int sampleSize = extractor.readSampleData(inputBuffer, 0);
+                            if (sampleSize < 0) {
+                                codec.queueInputBuffer(inputBufferIndex, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM);
+                                sawInputEOS = true;
+                            } else {
+                                codec.queueInputBuffer(inputBufferIndex, 0, sampleSize, extractor.getSampleTime(), 0);
+                                extractor.advance();
+                            }
+                        }
+                    }
+
+                    int outputBufferIndex = codec.dequeueOutputBuffer(info, 0);
+                    if (outputBufferIndex >= 0) {
+                        if ((info.flags & MediaCodec.BUFFER_FLAG_END_OF_STREAM) != 0) {
+                            sawOutputEOS = true;
+                        }
+
+                        ByteBuffer outputBuffer = codecOutputBuffers[outputBufferIndex];
+                        byte[] data = new byte[info.size];
+                        outputBuffer.get(data);
+                        outputStream.write(data);
+
+                        codec.releaseOutputBuffer(outputBufferIndex, false);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (outputStream != null) {
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (codec != null) {
+                codec.stop();
+                codec.release();
+            }
+            extractor.release();
+        }
+
+        Toast.makeText(thiscontext, "Audio extracted successfully", Toast.LENGTH_SHORT).show();
+    }
     }

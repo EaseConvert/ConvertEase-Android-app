@@ -7,7 +7,6 @@
     android:background="@color/dark_blue"
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="360dp"
-    android:theme="@style/AppTheme.Light"
     android:fillViewport="true"
     >
 
@@ -301,6 +300,16 @@
             app:layout_constraintStart_toStartOf="@+id/folder_btn"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
             app:layout_constraintVertical_bias="0.242" />
+
+        <ImageButton
+            android:id="@+id/VideoBtn"
+            android:layout_width="145dp"
+            android:layout_height="168dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_btn"
+            app:srcCompat="@drawable/home_page_video_btn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
