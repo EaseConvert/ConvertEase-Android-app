@@ -7,10 +7,14 @@
     android:background="@color/dark_blue"
     tools:context=".ImgToPdfFragment">
 
+
     <include
         android:id="@+id/include4"
-        layout="@layout/top_nav_without_setting" />
-
+        layout="@layout/top_nav_without_setting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="-2dp" />
 
     <TextView
         android:id="@+id/textView15"
