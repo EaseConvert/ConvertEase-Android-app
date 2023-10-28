@@ -8,13 +8,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
-import android.media.AudioAttributes;
 import android.net.Uri;
 import android.os.Bundle;
 
+import java.io.IOException;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,11 +23,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.convertease.ConvertorFiles.AudioExtractor;
 import com.example.convertease.Data.myDBHandler;
 import com.example.convertease.model.History;
 
 import java.io.File;
-import java.util.Base64;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,7 +42,7 @@ public class ConvertToMp3 extends Fragment {
     File dir;
     ImageButton pickVideoBtn;
     String selectedVideoPath;
-    String destinationVideoPath;
+    String destinationAudioPath;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -100,7 +103,21 @@ public class ConvertToMp3 extends Fragment {
         convertToMp3Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//            convertToAudio();
+          AudioExtractor audioExtractor = new AudioExtractor();
+                File sdcard = Environment.getExternalStorageDirectory();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+                String formattedDate = sdf.format(new Date());
+                String fileName = formattedDate + ".pdf";
+                File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
+                File AudioFile = new File(dir , fileName);
+
+                destinationAudioPath  = AudioFile.getAbsolutePath();
+            try {
+                audioExtractor.VideotoAudio(selectedVideoPath, destinationAudioPath, true, false);
+               }
+               catch (IOException e) {
+                    e.printStackTrace();
+                    }
             }
         });
         pickVideoBtn.setOnClickListener(new View.OnClickListener() {
@@ -112,26 +129,6 @@ public class ConvertToMp3 extends Fragment {
         return view;
     }
 
-//    private void convertToAudio() {
-//        try {
-//            File source = new File(selectedVideoPath);
-//            File target = new File("target.mp3");
-//
-//            AudioAttributes audioAttributes = new AudioAttributes();
-//            audioAttributes.setCodec("libmp3lame")
-//                    .setBitRate(128000)
-//                    .setChannels(2)
-//                    .setSamplingRate(44100);
-//            EncodingAttributes encodingAttributes = new EncodingAttributes();
-//            encodingAttributes.setFormat("mp3")
-//                    .setAudioAttributes(audioAttributes);
-//
-//            Base64.Encoder encoder = new Base64.Encoder();
-//            encoder.encode(new MultimediaObject(source), target, encodingAttributes);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     private void updateHistory() {
         myDBHandler db = new myDBHandler(thiscontext);
@@ -140,7 +137,7 @@ public class ConvertToMp3 extends Fragment {
         String currentDate = dateFormat.format(calendar.getTime());
         History history = new History();
         history.setName("MP4 To MP3");
-        history.setPath(destinationVideoPath);
+        history.setPath(destinationAudioPath);
         history.setDate(currentDate);
         db.addHistory(history);
         Log.d("dbHistory", "Name " + history.getName());
