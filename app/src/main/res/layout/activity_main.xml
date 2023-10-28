@@ -8,6 +8,7 @@
     tools:layout_editor_absoluteY="360dp"
     android:fillViewport="true"
     tools:context=".MainActivity"
+    android:background="@color/dark_blue"
     android:theme="@style/FullPageTheme"
     >
 
