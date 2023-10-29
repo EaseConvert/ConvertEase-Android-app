@@ -48,15 +48,13 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
-
 dependencies {
-
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation ("org.apache.pdfbox:pdfbox:3.0.0")
-    implementation("org.apache.pdfbox:pdfbox:3.0.0")
+
     testImplementation("junit:junit:4.13.2")
     implementation ("androidx.core:core-splashscreen:1.1.0-alpha02")
     implementation ("androidx.fragment:fragment:1.6.1")

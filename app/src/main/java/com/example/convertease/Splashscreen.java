@@ -10,8 +10,6 @@ public class Splashscreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         Intent home = new Intent(Splashscreen.this, MainActivity.class);
         new Handler().postDelayed(new Runnable() {
             @Override

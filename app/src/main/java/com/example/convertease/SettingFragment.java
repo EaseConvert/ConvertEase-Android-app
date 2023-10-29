@@ -1,6 +1,7 @@
 package com.example.convertease;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -20,6 +21,7 @@ import android.widget.Switch;
  */
 public class SettingFragment extends Fragment {
     private Switch themeSwitch;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,29 +67,25 @@ public class SettingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
-
         themeSwitch = view.findViewById(R.id.theme_toggle_switch);
 
+
+
+        // Load the current theme setting from SharedPreferences
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String selectedTheme = sharedPreferences.getString("selected_theme", "light");
+        boolean isDarkTheme = sharedPreferences.getBoolean("dark_theme", false);
+        themeSwitch.setChecked(isDarkTheme);
 
-        if ("dark".equals(selectedTheme)) {
-            themeSwitch.setChecked(true);
-        } else if ("light".equals(selectedTheme)) {
-            themeSwitch.setChecked(false);
-        }
-        themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("selected_theme", isChecked ? "dark" : "light");
-                editor.apply();
+        // Set a listener for the theme switch
+        themeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // Save the selected theme to SharedPreferences
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("dark_theme", isChecked);
+            editor.apply();
 
-                //Recreate the activity to apply the new theme
-                getActivity().recreate();
-            }
+            // Restart the MainActivity to apply the new theme
+            getActivity().recreate();
         });
 
         return view;

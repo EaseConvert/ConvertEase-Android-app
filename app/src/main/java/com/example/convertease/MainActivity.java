@@ -17,17 +17,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String selectedTheme = sharedPreferences.getString("selected_theme", "light");
 
-        if ("dark".equals(selectedTheme)) {
-            setTheme(R.style.AppTheme_Dark);
-            Log.d("Theme","Dark Theme");
-        } else {
-            setTheme(R.style.AppTheme_Light);
-            Log.d("Theme","Light Theme");
-        }
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isDarkTheme = sharedPreferences.getBoolean("dark_theme", false);
+
+        if (isDarkTheme) {
+            setTheme(R.style.DarkAppTheme); // Use your dark theme style
+        } else {
+            setTheme(R.style.LightAppTheme); // Use your light theme style
+        }
 
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

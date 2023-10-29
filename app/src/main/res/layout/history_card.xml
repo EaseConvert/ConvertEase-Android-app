@@ -6,8 +6,6 @@
     android:layout_height="wrap_content"
     android:background="@color/dark_blue"
     >
-
-
     <androidx.cardview.widget.CardView
         android:id="@+id/history_card"
         android:layout_width="match_parent"

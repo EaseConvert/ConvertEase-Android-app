@@ -127,7 +127,7 @@ public class CompressImage extends Fragment {
 
                 if (imagePath != null) {
                     Bitmap bitmap = decodeFile(imagePath);
-                    int targetFileSize = 200 * 1024;
+                    int targetFileSize = 150 * 1024;
                     NewImgPath =  compressImage(bitmap, targetFileSize);
                     Log.d("thislog","path " + NewImgPath);
                     updateHistory();
@@ -202,7 +202,6 @@ public class CompressImage extends Fragment {
             String fileName = formattedDate + ".jpeg";
             File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
             File imageFile = new File(dir, fileName);
-
             FileOutputStream fos = new FileOutputStream(imageFile);
 
             do {
