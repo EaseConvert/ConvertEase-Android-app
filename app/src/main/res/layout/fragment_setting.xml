@@ -102,8 +102,7 @@
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <ImageButton
-
-        android:id="@+id/imageButton"
+        android:id="@+id/aboutDevBtn"
         android:layout_width="340dp"
         android:layout_height="80dp"
         android:layout_marginTop="48dp"
@@ -120,11 +119,11 @@
         android:text="About Developers"
         android:textSize="25dp"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton"
+        app:layout_constraintBottom_toBottomOf="@+id/aboutDevBtn"
+        app:layout_constraintEnd_toEndOf="@+id/aboutDevBtn"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="@+id/imageButton"
+        app:layout_constraintStart_toStartOf="@+id/aboutDevBtn"
+        app:layout_constraintTop_toTopOf="@+id/aboutDevBtn"
         app:layout_constraintVertical_bias="0.567" />
 
     <ImageView
@@ -136,7 +135,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/aboutDevBtn"
         app:layout_constraintVertical_bias="0.149" />
 
     <TextView

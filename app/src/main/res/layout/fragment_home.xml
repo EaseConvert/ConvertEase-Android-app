@@ -301,16 +301,6 @@
             app:layout_constraintTop_toBottomOf="@+id/textView13"
             app:layout_constraintVertical_bias="0.242" />
 
-        <ImageButton
-            android:id="@+id/VideoBtn"
-            android:layout_width="145dp"
-            android:layout_height="168dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_btn"
-            app:srcCompat="@drawable/home_page_video_btn" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 

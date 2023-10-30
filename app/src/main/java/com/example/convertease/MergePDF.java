@@ -23,11 +23,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.convertease.Data.myDBHandler;
 import com.example.convertease.model.History;
-import com.itextpdf.kernel.pdf.PdfReader;
-import com.itextpdf.layout.Document;
-//import org.apache.pdfbox.multipdf.PdfCopy;
-import org.apache.pdfbox.io.MemoryUsageSetting;
-import org.apache.pdfbox.multipdf.PDFMergerUtility;
 
 import java.io.File;
 import java.io.FileOutputStream;

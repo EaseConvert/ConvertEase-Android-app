@@ -110,11 +110,10 @@ public class CompressFolder extends Fragment {
                 String formattedDate = sdf.format(new Date());
                 String fileName = formattedDate + ".zip";
                 File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
-//                File zipFile = new File(dir, fileName);
-                String Path = convertSAFUriToValidPath(SelectedFolderPath);
-                Log.d("divesh",""+dir);
-                compressFolderToZip(dir.getPath());
 
+                String Path = convertSAFUriToValidPath(SelectedFolderPath);
+                Log.d("divesh",""+SelectedFolderPath);
+                compressFolderToZip("storage/emulated/0/mm");
             }
         });
         return view;
@@ -129,7 +128,6 @@ public class CompressFolder extends Fragment {
             if (result.getResultCode() == Activity.RESULT_OK){
                 Intent intent = result.getData();
                 Uri uri = intent.getData();
-
                 Log.i("Dir:" ,"" + uri);
                 DocumentFile df = DocumentFile.fromTreeUri(getContext(), uri);
                 Log.i("dir with file:","" + df.getUri());

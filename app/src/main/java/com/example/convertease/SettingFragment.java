@@ -6,12 +6,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.Switch;
 
 /**
@@ -21,7 +23,7 @@ import android.widget.Switch;
  */
 public class SettingFragment extends Fragment {
     private Switch themeSwitch;
-
+    ImageButton aboutDevBtn;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,12 +65,13 @@ public class SettingFragment extends Fragment {
         }
     }
 
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    @SuppressLint({"UseSwitchCompatOrMaterialCode", "MissingInflatedId"})
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
         themeSwitch = view.findViewById(R.id.theme_toggle_switch);
+        aboutDevBtn = view.findViewById(R.id.aboutDevBtn);
 
 
 
@@ -88,6 +91,15 @@ public class SettingFragment extends Fragment {
             getActivity().recreate();
         });
 
+        aboutDevBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new aboutus());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });
         return view;
     }
 
