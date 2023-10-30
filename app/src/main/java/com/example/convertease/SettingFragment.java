@@ -22,7 +22,7 @@ import android.widget.Switch;
  * create an instance of this fragment.
  */
 public class SettingFragment extends Fragment {
-    private Switch themeSwitch;
+
     ImageButton aboutDevBtn;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -70,26 +70,9 @@ public class SettingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
-        themeSwitch = view.findViewById(R.id.theme_toggle_switch);
+//        themeSwitch = view.findViewById(R.id.theme_toggle_switch);
         aboutDevBtn = view.findViewById(R.id.aboutDevBtn);
 
-
-
-        // Load the current theme setting from SharedPreferences
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        boolean isDarkTheme = sharedPreferences.getBoolean("dark_theme", false);
-        themeSwitch.setChecked(isDarkTheme);
-
-        // Set a listener for the theme switch
-        themeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            // Save the selected theme to SharedPreferences
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("dark_theme", isChecked);
-            editor.apply();
-
-            // Restart the MainActivity to apply the new theme
-            getActivity().recreate();
-        });
 
         aboutDevBtn.setOnClickListener(new View.OnClickListener() {
             @Override

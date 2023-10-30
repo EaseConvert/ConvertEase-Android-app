@@ -15,7 +15,6 @@
         android:id="@+id/textView34"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="196dp"
         android:fontFamily="@font/average"
         android:text="easeconvert@gmail.com"
         android:textColor="@color/white"
@@ -24,21 +23,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView33"
-        app:layout_constraintVertical_bias="0.81" />
+        app:layout_constraintVertical_bias="0.335" />
 
     <TextView
         android:id="@+id/textView28"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="232dp"
+        android:layout_marginEnd="228dp"
         android:text="About Us"
         android:textColor="@color/white"
         android:textSize="23sp"
 
-        app:layout_constraintBottom_toTopOf="@+id/imageView5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include999"
-        app:layout_constraintVertical_bias="0.434" />
+        app:layout_constraintVertical_bias="0.052" />
 
     <ImageButton
         android:id="@+id/backBtn11"
@@ -69,30 +68,27 @@
         android:id="@+id/textView32"
         android:layout_width="346dp"
         android:layout_height="205dp"
-        android:layout_marginBottom="328dp"
+        android:layout_marginBottom="208dp"
         android:fontFamily="@font/average"
         android:text="The ConvertEase is an application that converts one media to another, does trimming, compress and other editing. The app is developed with efforts for providing users a common platform for converting multiple media and editing under one roof."
         android:textColor="@color/white"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.569"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView5"
-
         android:layout_width="151dp"
         android:layout_height="145dp"
-        android:layout_marginBottom="32dp"
         android:background="@drawable/gradient_circle"
         android:src="@drawable/logo2"
-
-        app:layout_constraintBottom_toTopOf="@+id/textView32"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include999"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.16" />
 
     <TextView
         android:id="@+id/textView33"
@@ -106,7 +102,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView32"
-        app:layout_constraintVertical_bias="0.139" />
+        app:layout_constraintVertical_bias="0.193" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
