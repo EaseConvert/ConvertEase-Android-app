@@ -3,7 +3,6 @@ package com.example.convertease;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +11,10 @@ import android.widget.ImageButton;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TextOptionsFragment#newInstance} factory method to
+ * Use the {@link TextToPDF#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TextOptionsFragment extends Fragment {
+public class TextToPDF extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +25,7 @@ public class TextOptionsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public TextOptionsFragment() {
+    public TextToPDF() {
         // Required empty public constructor
     }
 
@@ -36,11 +35,11 @@ public class TextOptionsFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TextOptionsFragment.
+     * @return A new instance of fragment TextToPDF.
      */
     // TODO: Rename and change types and number of parameters
-    public static TextOptionsFragment newInstance(String param1, String param2) {
-        TextOptionsFragment fragment = new TextOptionsFragment();
+    public static TextToPDF newInstance(String param1, String param2) {
+        TextToPDF fragment = new TextToPDF();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,10 +59,9 @@ public class TextOptionsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_text_options, container, false);
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.fragment_text_to_pdf, container, false);
 
-
-        ImageButton textToPdfOption = view.findViewById(R.id.textToPdf);
         ImageButton backButton = view.findViewById(R.id.backBtn);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,17 +70,8 @@ public class TextOptionsFragment extends Fragment {
                 getParentFragmentManager().popBackStack();
             }
         });
-
-        textToPdfOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, new TextToPDF());
-                transaction.addToBackStack(null); // Optionally, add to the back stack
-                transaction.commit();
-            }
-        });
-
         return view;
     }
+
+
 }

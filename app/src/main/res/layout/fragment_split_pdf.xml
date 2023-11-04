@@ -95,7 +95,6 @@
         android:layout_height="wrap_content"
         android:textColorHint="#96B6C5"
         android:hint="Enter Page Range (e.g., 1-3)"
-
         app:layout_constraintBottom_toTopOf="@+id/splitPdfbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
