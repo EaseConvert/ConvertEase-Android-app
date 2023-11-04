@@ -1,8 +1,5 @@
 package com.example.convertease;
 
-import static android.app.Activity.RESULT_OK;
-import static android.content.Intent.ACTION_PICK;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,20 +7,33 @@ import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.convertease.Data.myDBHandler;
 import com.example.convertease.model.History;
+
+import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 //import org.apache.pdfbox.pdmodel.PDDocument;
 //import org.apache.pdfbox.text.PDFTextStripper;
 //import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -38,6 +48,8 @@ public class ConvertToDOCX extends Fragment {
     private static final int REQUEST_CODE_PICK_PDF = 1;
     Context thiscontext;
     String pdfPath;
+    String outputFilepath;
+    String  inputFilePath;
     private ArrayList<String> selectedPdfPath = new ArrayList<>();
 
     // TODO: Rename parameter arguments, choose names that match
@@ -106,13 +118,11 @@ public class ConvertToDOCX extends Fragment {
         convertToDocxBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate back to the previous fragment
-//               convertPDFtoDOC();
+                convertPDFtoDOC(inputFilePath);
             }
         });
         return view;
     }
-
     private void pickPdf() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("application/pdf");
@@ -120,6 +130,78 @@ public class ConvertToDOCX extends Fragment {
         startActivityForResult(intent,REQUEST_CODE_PICK_PDF);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == REQUEST_CODE_PICK_PDF) {
+            if (data != null) {
+                Uri selectedPdfUri = data.getData();
+                inputFilePath = getPathFromUri(selectedPdfUri);
+                Log.d("path",""+inputFilePath);
+            } else {
+                Toast.makeText(thiscontext, "Problem With Selected File", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private String getPathFromUri(Uri uri) {
+        String path = null;
+        String[] projection = {MediaStore.Downloads.DATA}; // Use Downloads.DATA for PDFs
+        Cursor cursor = getContext().getContentResolver().query(uri, projection, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Downloads.DATA); // Use Downloads.DATA for PDFs
+            path = cursor.getString(columnIndex);
+            cursor.close();
+        }
+        return path;
+    }
+    private void convertPDFtoDOC(String inputpath) {
+        try {
+            // Load the PDF file
+            File pdfFile = new File(Environment.getExternalStorageDirectory(), inputpath);
+            PDDocument document = Loader.loadPDF(pdfFile);
+            // Extract text from the PDF
+            PDFTextStripper pdfStripper = new PDFTextStripper();
+            String text = pdfStripper.getText(document);
+            // Create a DOCX file and write the extracted text
+            XWPFDocument docxDocument = new XWPFDocument();
+            XWPFParagraph paragraph = docxDocument.createParagraph();
+            paragraph.createRun().setText(text);
+            // Save the DOCX file in the specified directory
+            File sdcard = Environment.getExternalStorageDirectory();
+            File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+            String formattedDate = sdf.format(new Date());
+            String fileName = formattedDate + ".docx";
+            File docxFile = new File(dir, fileName);
+            outputFilepath = docxFile.getAbsolutePath();
+            FileOutputStream docxOutputStream = new FileOutputStream(docxFile);
+            docxDocument.write(docxOutputStream);
+            docxOutputStream.close();
+            // Clean up
+            document.close();
+            Toast.makeText(thiscontext, "Docx Generated Successfully...", Toast.LENGTH_SHORT).show();
+            updateHistory();
+        } catch (Exception e) {
+            Toast.makeText(thiscontext, "Problem With Conversion!!!", Toast.LENGTH_SHORT).show();
+            Log.d("conversion",""+inputFilePath);
+            e.printStackTrace();
+        }
+    }
+
+
+    private void updateHistory() {
+        myDBHandler db = new myDBHandler (getContext());
+        Calendar calendar = Calendar.getInstance();
+        android.icu.text.SimpleDateFormat dateFormat = new android.icu.text.SimpleDateFormat("yyyy/MM/dd");
+        String currentDate = dateFormat.format(calendar.getTime());
+        History history  = new History();
+        history.setName("PDF to DOCX");
+        history.setPath(outputFilepath);
+        history.setDate(currentDate);
+        db.addHistory(history);
+        Log.d("dbHistory","Name "+history.getName());
+    }
 
 }

@@ -4,6 +4,7 @@ package com.example.convertease;
 import android.app.Activity;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,6 +21,9 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.Fragment;
+
+import com.example.convertease.Data.myDBHandler;
+import com.example.convertease.model.History;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -40,6 +44,7 @@ public class CompressFolder extends Fragment {
     private static final int REQUEST_CODE_PICK_FOLDER = 6;
     ImageButton selectFileBtn , CompressBtn;
     String SelectedFolderPath;
+    String filepath;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -166,10 +171,12 @@ public class CompressFolder extends Fragment {
                 String fileName = formattedDate + ".zip";
                 File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
                 File zipFile = new File(dir, fileName);
+                filepath = zipFile.getAbsolutePath();
 
                 try {
                     ZipManager.zipFolder(sourceFolderPath, zipFile.getAbsolutePath());
                     Toast.makeText(getContext(), "Folder Compressed Successfully...", Toast.LENGTH_SHORT).show();
+                    updateHistory();
 
                     // The zipFolder function will create a zip file containing the contents of the selected folder.
                     // You can now use the zipFile as needed.
@@ -216,5 +223,17 @@ public class CompressFolder extends Fragment {
                 }
             }
         }
+    }
+    private void updateHistory() {
+        myDBHandler db = new myDBHandler (getContext());
+        Calendar calendar = Calendar.getInstance();
+        android.icu.text.SimpleDateFormat dateFormat = new android.icu.text.SimpleDateFormat("yyyy/MM/dd");
+        String currentDate = dateFormat.format(calendar.getTime());
+        History history  = new History();
+        history.setName("Folder Compress");
+        history.setPath(filepath);
+        history.setDate(currentDate);
+        db.addHistory(history);
+        Log.d("dbHistory","Name "+history.getName());
     }
 }

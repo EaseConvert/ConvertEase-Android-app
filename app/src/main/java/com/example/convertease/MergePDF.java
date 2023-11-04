@@ -110,17 +110,7 @@ public class MergePDF extends Fragment {
                     Toast.makeText(getContext(), "Please Select PDF File", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    try {
-                        File sdcard = Environment.getExternalStorageDirectory();
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
-                        String formattedDate = sdf.format(new Date());
-                        String fileName = formattedDate + ".pdf";
-                        File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
-                        File mergedPdfFile = new File(dir, fileName);
-                        FileOutputStream outputStream = new FileOutputStream(mergedPdfFile);
-                    }catch (Exception e){
-                        Log.d("PDF",""+e);
-                    }
+
                 }
 
 
@@ -170,26 +160,7 @@ public class MergePDF extends Fragment {
         }
 
 
-//        private Void MergePDFFile(){
-//            PDFMergerUtility pdfMergerUtility = new PDFMergerUtility();
-//            pdfMergerUtility.setDestinationFileName(mergedPdfFile.getAbsolutePath());
-//            for (Uri pdfUri : mSelectedPdf) {
-//                try {
-//
-//                    String pdfFilePath = getRealPathFromUri(pdfUri);
-//                    pdfMergerUtility.addSource(pdfFilePath);
-//                    Log.d("pdf","pdf Selected "+pdfFilePath);
-//                    MemoryUsageSetting memoryUsageSetting = MemoryUsageSetting.setupMainMemoryOnly();
-//                    pdfMergerUtility.setDestinationFileName(mergedPdfFile.getAbsolutePath());
-//                    pdfMergerUtility.setMemoryUsageSetting(memoryUsageSetting);
-//                    pdfMergerUtility.mergeDocuments();
-//                    Toast.makeText(getContext(), "PDF Merged Successfully!!!", Toast.LENGTH_SHORT).show();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                    Toast.makeText(getContext(), "PDF Merged Failed!!!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//            }
+
 
     private void updateHistory() {
         myDBHandler db = new myDBHandler (thiscontext);
