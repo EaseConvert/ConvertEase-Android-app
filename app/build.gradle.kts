@@ -66,6 +66,7 @@ dependencies {
     implementation ("com.itextpdf:itext7-core:7.1.15")
     implementation ("org.apache.poi:poi:4.1.2")
     implementation ("org.apache.poi:poi-ooxml:4.1.2")
+    implementation ("com.itextpdf:itextpdf:5.5.13.2")
 }
 
 

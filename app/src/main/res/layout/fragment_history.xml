@@ -72,7 +72,6 @@
                         app:layout_constraintVertical_bias="0.372"
                         app:tint="@color/white" />
 
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>

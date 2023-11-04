@@ -29,12 +29,10 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class HistoryFragment extends Fragment {
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -42,10 +40,6 @@ public class HistoryFragment extends Fragment {
     public HistoryFragment() {
         // Required empty public constructor
     }
-
-
-
-
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -63,7 +57,6 @@ public class HistoryFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,54 +65,33 @@ public class HistoryFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_history, container, false);
-
-
         ImageButton settingButton = view.findViewById(R.id.settingBtn);
-
         settingButton.setOnClickListener(v -> openSettingPage());
-
-
-
-
-
         RecyclerHistoryAdapter recyclerHistoryAdapter;
         ArrayList<History> historyArrayList;
-
-
         ArrayAdapter<String> arrayAdapter;
         Context thiscontext;
         thiscontext = container.getContext();
-
         //Recycler view
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.r_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(thiscontext);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-
-
-
         // Db handle
         myDBHandler db = new myDBHandler(thiscontext);
         List<History> allHistory = db.getHistory();
-
         //array list for history
         historyArrayList = new ArrayList<>();
-
-
-
         for(History history : allHistory){
             historyArrayList.add(history);
             Log.d("dbHistoryData","data = " + allHistory);
         }
-
         // recycler view adapter work
         recyclerHistoryAdapter = new RecyclerHistoryAdapter(thiscontext,historyArrayList);
         recyclerView.setAdapter(recyclerHistoryAdapter);

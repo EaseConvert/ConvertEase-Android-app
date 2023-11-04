@@ -1,28 +1,26 @@
 package com.example.convertease;
 
 import static android.app.Activity.RESULT_OK;
-
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.example.convertease.Data.myDBHandler;
 import com.example.convertease.model.History;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfCopy;
+import com.itextpdf.text.pdf.PdfReader;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,6 +39,7 @@ public class MergePDF extends Fragment {
     private List<Uri> mSelectedPdf = new ArrayList<>();
     Context thiscontext;
     File mergedPdfFile;
+    String  mergedPdfFilePath;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -106,27 +105,44 @@ public class MergePDF extends Fragment {
         mergePdfBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(mSelectedPdf.isEmpty()){
                     Toast.makeText(getContext(), "Please Select PDF File", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    try{
+                        File sdcard = Environment.getExternalStorageDirectory();
+                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+                        String formattedDate = sdf.format(new Date());
+                        String fileName = formattedDate + ".pdf";
+                        File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
+                        File mergedPdfFile = new File(dir, fileName);
+                        mergedPdfFilePath = mergedPdfFile.getAbsolutePath();
+                        FileOutputStream outputStream = new FileOutputStream(mergedPdfFile);
+                        Document document = new Document();
+                        PdfCopy copy = new PdfCopy(document , outputStream);
+                        document.open();
+                        for(Uri pdfUri:mSelectedPdf){
+                            PdfReader reader = new PdfReader(getContext().getContentResolver().openInputStream(pdfUri));
+                            copy.addDocument(reader);
+                            reader.close();
+                        }
+                        document.close();
+                        outputStream.close();
+                        Toast.makeText(getContext(), "PDFs Merged Successfully...", Toast.LENGTH_SHORT).show();
 
+                        updateHistory();
+                    }catch (Exception e){
+                        Toast.makeText(getContext(), "PDFs Merged Failed!!!", Toast.LENGTH_SHORT).show();
+
+                        e.printStackTrace();
+                    }
                 }
-
-
             }
         });
         return view;
     }
-    private String getRealPathFromUri(Uri uri) {
-        String[] projection = {MediaStore.Files.FileColumns.DATA};
-        Cursor cursor = getContext().getContentResolver().query(uri, projection, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA);
-        cursor.moveToFirst();
-        String filePath = cursor.getString(column_index);
-        cursor.close();
-        return filePath;
-    }
+
     private void pickPdf() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("application/pdf");
@@ -148,9 +164,7 @@ public class MergePDF extends Fragment {
                             mSelectedPdf.add(data.getClipData().getItemAt(i).getUri());
                         }
                     }
-                    Toast.makeText(getContext(), "Selected " + mSelectedPdf.size() + " PDF Files", Toast.LENGTH_SHORT).show();
-
-
+//                    Toast.makeText(getContext(), "Selected " + mSelectedPdf.size() + " PDF Files", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(getContext(), "Error With PDF", Toast.LENGTH_SHORT).show();
@@ -159,17 +173,14 @@ public class MergePDF extends Fragment {
             }
         }
 
-
-
-
     private void updateHistory() {
-        myDBHandler db = new myDBHandler (thiscontext);
+        myDBHandler db = new myDBHandler (getContext());
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         String currentDate = dateFormat.format(calendar.getTime());
         History history  = new History();
         history.setName("PDF Merged");
-        history.setPath("");
+        history.setPath(mergedPdfFilePath);
         history.setDate(currentDate);
         db.addHistory(history);
         Log.d("dbHistory","Name "+history.getName());
