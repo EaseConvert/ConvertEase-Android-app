@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_blue"
-    tools:context=".ImgToPdfFragment">
+    android:background="@color/dark_blue">
 
     <include
         android:id="@+id/include4"

@@ -40,32 +40,6 @@
         app:layout_constraintStart_toEndOf="@+id/backBtn"
         app:layout_constraintTop_toBottomOf="@+id/include2"
         app:layout_constraintVertical_bias="0.042" />
-
-    <ImageButton
-        android:id="@+id/convertToDocxBtn"
-        android:layout_width="340dp"
-        android:layout_height="80dp"
-        android:background="@drawable/custom_button"
-        android:src="@drawable/custom_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.080" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Convert To DOCX"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/convertToDocxBtn"
-        app:layout_constraintEnd_toEndOf="@+id/convertToDocxBtn"
-        app:layout_constraintStart_toStartOf="@+id/convertToDocxBtn"
-        app:layout_constraintTop_toTopOf="@+id/convertToDocxBtn" />
-
     <ImageButton
         android:id="@+id/mergePdfbtn"
         android:layout_width="340dp"
@@ -76,9 +50,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/convertToDocxBtn"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
         app:layout_constraintVertical_bias="0.116" />
-
     <ImageButton
         android:id="@+id/splitPdfBtn"
         android:layout_width="340dp"
@@ -91,7 +64,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mergePdfbtn"
         app:layout_constraintVertical_bias="0.200" />
-
     <TextView
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
@@ -103,12 +75,11 @@
         app:layout_constraintEnd_toEndOf="@+id/mergePdfbtn"
         app:layout_constraintStart_toStartOf="@+id/mergePdfbtn"
         app:layout_constraintTop_toTopOf="@+id/mergePdfbtn" />
-
     <TextView
         android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Split PDF"
+        android:text="Secure PDF"
         android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/splitPdfBtn"

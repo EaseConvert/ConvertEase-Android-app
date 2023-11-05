@@ -21,10 +21,15 @@ import androidx.fragment.app.Fragment;
 
 import com.example.convertease.Data.myDBHandler;
 import com.example.convertease.model.History;
+import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfDocumentInfo;
+
 import com.itextpdf.kernel.pdf.PdfWriter;
+
+import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.layout.Document;
-import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Paragraph;
 
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -36,14 +41,11 @@ import org.apache.poi.xwpf.usermodel.XWPFPictureData;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-//import org.apache.pdfbox.pdmodel.PDDocument;
-//import org.apache.pdfbox.text.PDFTextStripper;
-//import org.apache.poi.xwpf.usermodel.XWPFDocument;
-//import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-//import org.apache.poi.xwpf.usermodel.XWPFRun;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ConvertToDOCX#newInstance} factory method to
@@ -194,33 +196,6 @@ public class ConvertToDOCX extends Fragment {
             e.printStackTrace();
         }
     }
-    public void convertDocxToPdf(String inputDocxPath, String outputPdfPath) {
-        try {
-            XWPFDocument doc = new XWPFDocument(new FileInputStream(inputDocxPath));
-
-            PdfDocument pdfDocument = new PdfDocument(new PdfWriter(outputPdfPath));
-            Document document = new Document(pdfDocument);
-            PdfDocumentInfo pdfDocumentInfo = pdfDocument.getDocumentInfo();
-            pdfDocumentInfo.setTitle("Converted PDF");
-
-            for (XWPFPictureData picture : doc.getAllPackagePictures()) {
-                byte[] bytes = picture.getData();
-                Image img = new Image(ImageDataFactory.create(bytes));
-                document.add(img);
-            }
-
-            for (XWPFParagraph paragraph : doc.getParagraphs()) {
-                String text = paragraph.getText();
-                document.add(text);
-            }
-
-            document.close();
-            pdfDocument.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void updateHistory() {
         myDBHandler db = new myDBHandler (getContext());
         Calendar calendar = Calendar.getInstance();

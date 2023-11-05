@@ -63,7 +63,7 @@ public class PdfOptionsFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_pdf_options, container, false);
 
         ImageButton backButton = view.findViewById(R.id.backBtn);
-        ImageButton convertToDocBtn = view.findViewById(R.id.convertToDocxBtn);
+//        ImageButton convertToDocBtn = view.findViewById(R.id.convertToDocxBtn);
         ImageButton splitPdfBtn = view.findViewById(R.id.splitPdfBtn);
         ImageButton mergePdfBtn = view.findViewById(R.id.mergePdfbtn);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -73,15 +73,15 @@ public class PdfOptionsFragment extends Fragment {
                 getParentFragmentManager().popBackStack();
             }
         });
-        convertToDocBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, new ConvertToDOCX());
-                transaction.addToBackStack(null); // Optionally, add to the back stack
-                transaction.commit();
-            }
-        });
+//        convertToDocBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+//                transaction.replace(R.id.frame_layout, new ConvertToDOCX());
+//                transaction.addToBackStack(null); // Optionally, add to the back stack
+//                transaction.commit();
+//            }
+//        });
         splitPdfBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

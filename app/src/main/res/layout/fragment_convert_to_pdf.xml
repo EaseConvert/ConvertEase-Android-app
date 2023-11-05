@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_blue"
-    tools:context=".ImgToPdfFragment">
+    android:background="@color/dark_blue">
 
     <include
         android:id="@+id/include4"
@@ -16,7 +15,7 @@
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select PDF File"
+        android:text="Select DOCX File"
         android:textColor="@color/white"
         android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +53,7 @@
         app:layout_constraintVertical_bias="0.080" />
 
     <ImageButton
-        android:id="@+id/splitPdfbtn"
+        android:id="@+id/convertToPDFBtn"
         android:layout_width="340dp"
         android:layout_height="80dp"
         android:background="@drawable/generate_button"
@@ -64,44 +63,31 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectFileBtn"
-        app:layout_constraintVertical_bias="0.358" />
+        app:layout_constraintVertical_bias="0.249" />
 
     <TextView
         android:id="@+id/textView31"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select PDF File"
+        android:text="Select DOCX File"
         android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/selectFileBtn"
         app:layout_constraintEnd_toEndOf="@+id/selectFileBtn"
         app:layout_constraintStart_toStartOf="@+id/selectFileBtn"
-        app:layout_constraintTop_toTopOf="@+id/selectFileBtn"/>
+        app:layout_constraintTop_toTopOf="@+id/selectFileBtn" />
+
     <TextView
         android:id="@+id/textView30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Secure PDF"
+        android:text="Convert To PDF"
         android:textColor="@color/white"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/splitPdfbtn"
-        app:layout_constraintEnd_toEndOf="@+id/splitPdfbtn"
-        app:layout_constraintStart_toStartOf="@+id/splitPdfbtn"
-        app:layout_constraintTop_toTopOf="@+id/splitPdfbtn" />
-
-    <EditText
-        android:id="@+id/pageRange"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:textColorHint="#96B6C5"
-        android:textColor="@color/white"
-        android:hint="Set Password"
-        app:layout_constraintBottom_toTopOf="@+id/splitPdfbtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectFileBtn"
-        app:layout_constraintVertical_bias="0.493" />
+        app:layout_constraintBottom_toBottomOf="@+id/convertToPDFBtn"
+        app:layout_constraintEnd_toEndOf="@+id/convertToPDFBtn"
+        app:layout_constraintStart_toStartOf="@+id/convertToPDFBtn"
+        app:layout_constraintTop_toTopOf="@+id/convertToPDFBtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

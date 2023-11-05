@@ -11,6 +11,8 @@ import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -28,6 +30,11 @@ import android.widget.Toast;
 
 import com.example.convertease.Data.myDBHandler;
 import com.example.convertease.model.History;
+import com.itextpdf.kernel.pdf.EncryptionConstants;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.WriterProperties;
 
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.multipdf.Splitter;
@@ -48,6 +55,7 @@ import java.util.Locale;
 public class SplitPDF extends Fragment {
     String inputFilePath;
     String filepath;
+    String outputPdfPath;
     private static final int REQUEST_CODE_PICK_PDF = 1;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -113,46 +121,11 @@ public class SplitPDF extends Fragment {
         splitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                splitPdf();
+                Log.d("inputfile",""+inputFilePath);
+                setPasswordForPdf(inputFilePath,"Divesh");
             }
         });
         return view;
-    }
-
-    private void splitPdf() {
-        try{
-            File sdcard = Environment.getExternalStorageDirectory();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
-            String formattedDate = sdf.format(new Date());
-            String fileName = formattedDate + ".pdf";
-            File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
-            File pdfFile = new File(dir, fileName);
-            filepath = pdfFile.getAbsolutePath();
-            Log.d("pathis",""+filepath);
-            File selectedPdfFile = new File(inputFilePath);
-            PDDocument document = Loader.loadPDF(selectedPdfFile);
-            Splitter splitter = new Splitter();
-            splitter.setStartPage(1);
-            splitter.setEndPage(3);
-            List <PDDocument> splitPages =  splitter.split(document);
-            PDDocument newDoc = new PDDocument();
-            for(PDDocument mydoc:splitPages)
-            {
-                newDoc.addPage(mydoc.getPage(0));
-            }
-            newDoc.save(filepath);
-            newDoc.close();
-            Toast.makeText(getContext(), "PDF Split Successfully", Toast.LENGTH_SHORT).show();
-            updateHistory();
-        }
-        catch (java.nio.file.AccessDeniedException accessDeniedException) {
-            Log.e("AccessDeniedException", "Access to the PDF file was denied: " + accessDeniedException.getMessage());
-            Toast.makeText(getContext(), "Access to the PDF file was denied", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Log.e("splitPdf", "Error while splitting PDF: " + e.getMessage());
-            Toast.makeText(getContext(), "Error while splitting PDF", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
     }
 
     private void pickPdf() {
@@ -160,6 +133,7 @@ public class SplitPDF extends Fragment {
         intent.setType("application/pdf");
         startActivityForResult(intent,REQUEST_CODE_PICK_PDF);
     }
+
     private String getPathFromUri(Uri pdfUri) {
         String pdfPath = null;
         if (pdfUri != null) {
@@ -184,8 +158,6 @@ public class SplitPDF extends Fragment {
         }
         return pdfPath;
     }
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -202,6 +174,41 @@ public class SplitPDF extends Fragment {
             }
         }
     }
+    public void setPasswordForPdf(String inputPdfPath, String ownerPassword) {
+        try {
+            File pdfFile = new File("/storage/emulated/0/Download/25 (1).pdf");
+            if (pdfFile.exists()) {
+                File dir = new File(Environment.getExternalStorageDirectory() + "/Download/ConvertEase/");
+                if (!dir.exists()) {
+                    dir.mkdirs(); // Create the directory if it doesn't exist
+                }
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+                String formattedDate = sdf.format(new Date());
+                String fileName = formattedDate + ".pdf";
+                File securedPdf = new File(dir, fileName);
+                outputPdfPath = securedPdf.getAbsolutePath();
+
+                PdfReader reader = new PdfReader(pdfFile.getAbsolutePath());
+                PdfWriter writer = new PdfWriter(outputPdfPath,
+                        new WriterProperties().setStandardEncryption(
+                                "".getBytes(), // Empty user password
+                                ownerPassword.getBytes(),
+                                EncryptionConstants.ALLOW_PRINTING,
+                                EncryptionConstants.ENCRYPTION_AES_256
+                        )
+                );
+                PdfDocument pdfDoc = new PdfDocument(reader, writer);
+                pdfDoc.close();
+                Toast.makeText(getContext(), "PDF Secured Successfully...", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "PDF file not found", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void updateHistory() {
         myDBHandler db = new myDBHandler (getContext());
         Calendar calendar = Calendar.getInstance();
@@ -209,7 +216,7 @@ public class SplitPDF extends Fragment {
         String currentDate = dateFormat.format(calendar.getTime());
         History history  = new History();
         history.setName("PDF Merged");
-        history.setPath(filepath);
+        history.setPath(outputPdfPath);
         history.setDate(currentDate);
         db.addHistory(history);
         Log.d("dbHistory","Name "+history.getName());
