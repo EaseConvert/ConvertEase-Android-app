@@ -1,15 +1,23 @@
 package com.example.convertease;
 
+import static com.iceteck.silicompressorr.FileUtils.getDataColumn;
+
+import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -99,7 +107,7 @@ public class SplitPDF extends Fragment {
         selectFileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pickPdf();
+                    pickPdf();
             }
         });
         splitBtn.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +128,7 @@ public class SplitPDF extends Fragment {
             File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
             File pdfFile = new File(dir, fileName);
             filepath = pdfFile.getAbsolutePath();
+            Log.d("pathis",""+filepath);
             File selectedPdfFile = new File(inputFilePath);
             PDDocument document = Loader.loadPDF(selectedPdfFile);
             Splitter splitter = new Splitter();
@@ -135,13 +144,15 @@ public class SplitPDF extends Fragment {
             newDoc.close();
             Toast.makeText(getContext(), "PDF Split Successfully", Toast.LENGTH_SHORT).show();
             updateHistory();
-        }catch (Exception e){
-            Log.d("pdfSplit",""+e);
-            Log.d("pdfSplit",""+inputFilePath);
-            Toast.makeText(getContext(), "Error With PDF Split", Toast.LENGTH_SHORT).show();
+        }
+        catch (java.nio.file.AccessDeniedException accessDeniedException) {
+            Log.e("AccessDeniedException", "Access to the PDF file was denied: " + accessDeniedException.getMessage());
+            Toast.makeText(getContext(), "Access to the PDF file was denied", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e("splitPdf", "Error while splitting PDF: " + e.getMessage());
+            Toast.makeText(getContext(), "Error while splitting PDF", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
-
     }
 
     private void pickPdf() {
@@ -150,20 +161,30 @@ public class SplitPDF extends Fragment {
         startActivityForResult(intent,REQUEST_CODE_PICK_PDF);
     }
     private String getPathFromUri(Uri pdfUri) {
-        String imagePath = null;
+        String pdfPath = null;
         if (pdfUri != null) {
-            String[] projection = {MediaStore.Images.Media.DATA};
-            Cursor cursor = requireActivity().getContentResolver().query(pdfUri, projection, null, null, null);
-
-            if (cursor != null && cursor.moveToFirst()) {
-                int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                imagePath = cursor.getString(columnIndex);
-                cursor.close();
+            if (DocumentsContract.isDocumentUri(getContext(), pdfUri)) {
+                if ("com.android.externalstorage.documents".equals(pdfUri.getAuthority())) {
+                    String docId = DocumentsContract.getDocumentId(pdfUri);
+                    String[] split = docId.split(":");
+                    if ("primary".equalsIgnoreCase(split[0])) {
+                        pdfPath = Environment.getExternalStorageDirectory() + "/" + split[1];
+                    }
+                } else if ("com.android.providers.downloads.documents".equals(pdfUri.getAuthority())) {
+                    String id = DocumentsContract.getDocumentId(pdfUri);
+                    Uri contentUri = ContentUris.withAppendedId(
+                            Uri.parse("content://downloads/public_downloads"), Long.parseLong(id));
+                    pdfPath = getDataColumn(getContext(), contentUri, null, null);
+                }
+            } else if ("content".equalsIgnoreCase(pdfUri.getScheme())) {
+                pdfPath = getDataColumn(getContext(), pdfUri, null, null);
+            } else if ("file".equalsIgnoreCase(pdfUri.getScheme())) {
+                pdfPath = pdfUri.getPath();
             }
         }
-        Log.d("pdfpath","path is "+imagePath);
-        return imagePath;
+        return pdfPath;
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -171,8 +192,11 @@ public class SplitPDF extends Fragment {
         if (requestCode == REQUEST_CODE_PICK_PDF) {
             if (data != null) {
                 Uri selectedPdfUri = data.getData();
-                inputFilePath = getPathFromUri(selectedPdfUri);
+                inputFilePath  = getPathFromUri(selectedPdfUri);
                 Log.d("PDFFilePath", "Selected PDF File Path: " + inputFilePath);
+                if(inputFilePath == null){
+                    Toast.makeText(getContext(), "Failed to get PDF path", Toast.LENGTH_SHORT).show();
+                }
             } else {
                 Toast.makeText(getContext(), "Please Select PDF File!", Toast.LENGTH_SHORT).show();
             }
@@ -190,4 +214,5 @@ public class SplitPDF extends Fragment {
         db.addHistory(history);
         Log.d("dbHistory","Name "+history.getName());
     }
+
 }
