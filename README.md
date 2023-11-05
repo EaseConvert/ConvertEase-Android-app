@@ -1,6 +1,6 @@
 # ConvertEase: Multimedia Converter Android App
 
-<iframe src="https://drive.google.com/file/d/1YBo78T9qnrEOwrDSLPxvYBT01N637nKc/preview" width="640" height="480" allow="autoplay"></iframe>
+![ConvertEase Logo](https://drive.google.com/uc?export=view&id=1YBo78T9qnrEOwrDSLPxvYBT01N637nKc)
 &nbsp;
 &nbsp;
 <br/>
