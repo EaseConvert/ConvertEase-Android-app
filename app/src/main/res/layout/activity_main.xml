@@ -23,7 +23,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/gradient_bg"
+        android:background="@drawable/nav_bg"
         app:itemIconTint="@color/black"
         app:itemTextColor="@drawable/bottom_nav_item_selector"
         app:itemIconSize="35dp"
