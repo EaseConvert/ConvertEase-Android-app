@@ -115,7 +115,7 @@ public class SplitPDF extends Fragment {
         selectFileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    pickPdf();
+                pickPdf();
             }
         });
         splitBtn.setOnClickListener(new View.OnClickListener() {
@@ -176,9 +176,11 @@ public class SplitPDF extends Fragment {
     }
     public void setPasswordForPdf(String inputPdfPath, String ownerPassword) {
         try {
-            File pdfFile = new File("/storage/emulated/0/Download/25 (1).pdf");
+            File pdfFile = new File(inputPdfPath);
+
             if (pdfFile.exists()) {
                 File dir = new File(Environment.getExternalStorageDirectory() + "/Download/ConvertEase/");
+
                 if (!dir.exists()) {
                     dir.mkdirs(); // Create the directory if it doesn't exist
                 }
@@ -188,7 +190,12 @@ public class SplitPDF extends Fragment {
                 File securedPdf = new File(dir, fileName);
                 outputPdfPath = securedPdf.getAbsolutePath();
 
-                PdfReader reader = new PdfReader(pdfFile.getAbsolutePath());
+                Log.d("Debug", "Before PdfReader initialization");
+
+                PdfReader reader = new PdfReader(inputPdfPath);
+
+                Log.d("Debug", "Before PdfWriter initialization");
+
                 PdfWriter writer = new PdfWriter(outputPdfPath,
                         new WriterProperties().setStandardEncryption(
                                 "".getBytes(), // Empty user password
@@ -197,7 +204,13 @@ public class SplitPDF extends Fragment {
                                 EncryptionConstants.ENCRYPTION_AES_256
                         )
                 );
+
+                Log.d("Debug", "Before PdfDocument initialization");
+
                 PdfDocument pdfDoc = new PdfDocument(reader, writer);
+
+                Log.d("Debug", "Before pdfDoc.close()");
+
                 pdfDoc.close();
                 Toast.makeText(getContext(), "PDF Secured Successfully...", Toast.LENGTH_SHORT).show();
             } else {
@@ -205,9 +218,11 @@ public class SplitPDF extends Fragment {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e("Error", "Error: " + e.getMessage());
             Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void updateHistory() {
         myDBHandler db = new myDBHandler (getContext());

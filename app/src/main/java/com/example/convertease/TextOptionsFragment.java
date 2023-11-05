@@ -65,6 +65,7 @@ public class TextOptionsFragment extends Fragment {
 
         ImageButton textToPdfOption = view.findViewById(R.id.textToPdf);
         ImageButton backButton = view.findViewById(R.id.backBtn);
+        ImageButton textToQR = view.findViewById(R.id.textToQR);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +79,15 @@ public class TextOptionsFragment extends Fragment {
             public void onClick(View v) {
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, new TextToPDF());
+                transaction.addToBackStack(null); // Optionally, add to the back stack
+                transaction.commit();
+            }
+        });
+        textToQR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, new TextToQR());
                 transaction.addToBackStack(null); // Optionally, add to the back stack
                 transaction.commit();
             }
