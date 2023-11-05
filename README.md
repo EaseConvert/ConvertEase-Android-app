@@ -1,9 +1,11 @@
 # ConvertEase: Multimedia Converter Android App
-<br/<>
+&nbsp;
+&nbsp;
+<br/>
 ![ConvertEase Logo](https://drive.google.com/uc?export=view&id=1YBo78T9qnrEOwrDSLPxvYBT01N637nKc)
 &nbsp;
 &nbsp;
-<br/<>
+<br/>
 ConvertEase is a powerful multimedia converter Android app that offers a wide range of features, making it easy to convert various media formats. Whether you need to convert images, folders or documents, ConvertEase has got you covered.
 
 ## Table of Contents
