@@ -214,12 +214,12 @@ public class CompressImage extends Fragment {
 
             if (imageFile.length() <= targetSizeKB) {
                 // Notify success
-                Toast.makeText(thiscontext, "Image compression successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(thiscontext, "Image Compressed Successfully...", Toast.LENGTH_SHORT).show();
 
             } else {
                 // Notify failure
 
-                Toast.makeText(thiscontext, "Image compression successful",Toast.LENGTH_SHORT).show();
+                Toast.makeText(thiscontext, "Image Compressed Successfully...",Toast.LENGTH_SHORT).show();
                 compressedImagePath = null; // Set to null to indicate failure
             }
         } catch (IOException e) {

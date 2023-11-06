@@ -218,11 +218,11 @@ public class ImgToPdfFragment extends Fragment {
             try {
                 document.writeTo(Files.newOutputStream(file.toPath()));
                 document.close();
-                Toast.makeText(thiscontext, "PDF generated successfully!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(thiscontext, "PDF Generated Successfully...", Toast.LENGTH_SHORT).show();
                 pdfFilePath = file.getAbsolutePath();
             } catch (Exception e) {
                 Log.e("PDF Generation", "Error in creating PDF: " + e.getMessage());
-                Toast.makeText(thiscontext, "Error in creating PDF: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(thiscontext, "Error in creating PDF", Toast.LENGTH_SHORT).show();
             }
         } else {
             Log.e("PDF Generation", "Failed to create directory.");

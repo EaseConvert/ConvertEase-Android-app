@@ -178,8 +178,6 @@ public class CompressFolder extends Fragment {
                     Toast.makeText(getContext(), "Folder Compressed Successfully...", Toast.LENGTH_SHORT).show();
                     updateHistory();
 
-                    // The zipFolder function will create a zip file containing the contents of the selected folder.
-                    // You can now use the zipFile as needed.
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(getContext(), "Zip Process Failed...", Toast.LENGTH_SHORT).show();
