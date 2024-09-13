@@ -104,7 +104,11 @@ public class TextToQR extends Fragment {
                         String formattedDate = sdf.format(new Date());
                         String fileName = formattedDate + ".jpeg";
                         File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
-                        File imageFile = new File(dir, fileName);
+
+                        // Check if the ConvertEase folder exists, if not, create it
+                        if (!dir.exists()) {
+                            dir.mkdirs();
+                        }                        File imageFile = new File(dir, fileName);
                         QrImagePath = imageFile.getAbsolutePath();
                         FileOutputStream out = new FileOutputStream(imageFile);
                         qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);

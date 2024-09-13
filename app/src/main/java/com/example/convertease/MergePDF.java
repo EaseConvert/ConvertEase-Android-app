@@ -116,7 +116,11 @@ public class MergePDF extends Fragment {
                         String formattedDate = sdf.format(new Date());
                         String fileName = formattedDate + ".pdf";
                         File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
-                        File mergedPdfFile = new File(dir, fileName);
+
+                        // Check if the ConvertEase folder exists, if not, create it
+                        if (!dir.exists()) {
+                            dir.mkdirs();
+                        }                        File mergedPdfFile = new File(dir, fileName);
                         mergedPdfFilePath = mergedPdfFile.getAbsolutePath();
                         FileOutputStream outputStream = new FileOutputStream(mergedPdfFile);
                         Document document = new Document();

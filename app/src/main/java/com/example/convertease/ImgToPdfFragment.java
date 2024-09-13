@@ -212,6 +212,10 @@ public class ImgToPdfFragment extends Fragment {
         String fileName = formattedDate + ".pdf";
         File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
 
+        // Check if the ConvertEase folder exists, if not, create it
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
         if (dir.exists() || dir.mkdirs()) {
             File file = new File(dir, fileName);
 

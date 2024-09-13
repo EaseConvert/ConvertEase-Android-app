@@ -113,20 +113,30 @@ public class TextToPDF extends Fragment {
             String formattedDate = sdf.format(new Date());
             String fileName = formattedDate + ".pdf";
             File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
+
+            // Check if the ConvertEase folder exists, if not, create it
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
             File pdfFile = new File(dir, fileName);
             filepath = pdfFile.getAbsolutePath();
+
             // Create a PDF document
             PdfDocument pdfDoc;
             try {
                 FileOutputStream fos = new FileOutputStream(pdfFile);
                 pdfDoc = new PdfDocument(new PdfWriter(fos));
                 Document doc = new Document(pdfDoc);
+
                 // Add the user's text to the PDF
                 doc.add(new Paragraph(text));
+
                 // Close the PDF document
                 doc.close();
                 updateHistory();
                 Toast.makeText(getContext(), "PDF Generated Successfully...", Toast.LENGTH_SHORT).show();
+
                 // Provide feedback to the user, e.g., show a success message
                 // You can also launch a PDF viewer to view the generated PDF
             } catch (IOException e) {
@@ -138,6 +148,7 @@ public class TextToPDF extends Fragment {
             // Handle the case when the input is empty
         }
     }
+
     private void updateHistory() {
         myDBHandler db = new myDBHandler (getContext());
         Calendar calendar = Calendar.getInstance();

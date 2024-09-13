@@ -201,6 +201,11 @@ public class CompressImage extends Fragment {
             String formattedDate = sdf.format(new Date());
             String fileName = formattedDate + ".jpeg";
             File dir = new File(sdcard.getAbsolutePath() + "/Download/ConvertEase/");
+
+            // Check if the ConvertEase folder exists, if not, create it
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
             File imageFile = new File(dir, fileName);
             FileOutputStream fos = new FileOutputStream(imageFile);
 

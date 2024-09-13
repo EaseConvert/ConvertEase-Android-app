@@ -79,12 +79,13 @@ public class HistoryFragment extends Fragment {
         thiscontext = container.getContext();
         //Recycler view
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.r_view);
-        recyclerView.setHasFixedSize(true);
+//        recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(thiscontext);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         // Db handle
         myDBHandler db = new myDBHandler(thiscontext);
+
         List<History> allHistory = db.getHistory();
         //array list for history
         historyArrayList = new ArrayList<>();
